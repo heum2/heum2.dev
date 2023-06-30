@@ -1,0 +1,1 @@
+export { useGtag } from "./useGtag";

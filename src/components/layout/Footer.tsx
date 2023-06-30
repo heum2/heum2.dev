@@ -3,7 +3,7 @@ import React from "react";
 export function Footer(): JSX.Element {
   return (
     <footer className="flex justify-center">
-      <p className="text-sm">© 2023 조은흠. All Rights Reserved.</p>
+      <p className="text-gray-500 text-sm mt-3">© heum2 2023</p>
     </footer>
   );
 }
