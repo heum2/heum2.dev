@@ -20,19 +20,6 @@ export const metadata: Metadata = {
         config.naverSearchConsole.config.siteVerification,
     },
   },
-  robots: {
-    index: false,
-    follow: true,
-    nocache: true,
-    googleBot: {
-      index: true,
-      follow: false,
-      noimageindex: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
   openGraph: {
     type: "website",
     description: config.blog.description,
@@ -40,7 +27,7 @@ export const metadata: Metadata = {
     url: config.link,
     siteName: config.blog.title,
     locale: "ko_KR",
-    images: "https://heum2.github.io/next.svg",
+    images: "https://heum2-dev.vercel.app/next.svg",
   },
 };
 
