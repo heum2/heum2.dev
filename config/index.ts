@@ -43,6 +43,11 @@ export const config = {
       siteVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
     },
   },
+  googleAdsense: {
+    config: {
+      client: process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT,
+    },
+  },
   naverSearchConsole: {
     enable: process.env.NODE_ENV === "production",
     config: {
