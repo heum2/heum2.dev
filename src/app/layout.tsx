@@ -43,7 +43,8 @@ export default function RootLayout({
       </head>
       <body
         className={
-          (notosans.className, "min-h-screen bg-slate-100 dark:bg-black")
+          (notosans.className,
+          "min-h-screen bg-slate-100 dark:bg-black transition-colors duration-200")
         }
       >
         <Providers>{children}</Providers>

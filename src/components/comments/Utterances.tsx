@@ -35,7 +35,7 @@ function Utterances(): JSX.Element {
     return <></>;
   }
 
-  return <div id="comments" ref={ref} className="border-t-[1px]" />;
+  return <div id="comments" ref={ref} />;
 }
 
 export default Utterances;

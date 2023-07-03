@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -9,7 +8,7 @@ type Props = {
   children: string;
 };
 
-export function Tag({ children }: Props): JSX.Element {
+export function SideTag({ children }: Props): JSX.Element {
   const router = useRouter();
   const searchParams = useSearchParams();
 

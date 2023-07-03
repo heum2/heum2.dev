@@ -5,7 +5,7 @@ import { RiArrowDownSFill } from "react-icons/ri";
 
 import { ASide, Footer } from "src/components/layout";
 import { ContractCard, ProfileCard, PostCard } from "src/components/cards";
-import { Tag } from "src/components/tags";
+import { SideTag } from "src/components/tags";
 
 function Home() {
   const { posts, tags } = useMemo(
@@ -25,7 +25,7 @@ function Home() {
           <div className="p-1 mb-3 font-bold">🏷️ Tags</div>
           <ul className="gap-1 flex mobile-x-scroll lg:block mb-6">
             {tags.map((tag, idx) => (
-              <Tag key={idx}>{tag}</Tag>
+              <SideTag key={idx}>{tag}</SideTag>
             ))}
           </ul>
         </div>

@@ -1,12 +1,22 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useScrollDirection } from "src/hooks";
 
 export function Header(): JSX.Element {
   const pathname = usePathname();
+  const scrollDirection = useScrollDirection();
 
   return (
-    <header className="shadow-sm transition sticky bg-white dark:bg-zinc-700 mb-2 md:mb-6 border-b-[1px] z-[40] border-gray-100 dark:border-gray-800 top-0">
+    <header
+      className={`shadow-sm transition sticky bg-white dark:bg-zinc-700 mb-2 md:mb-6 border-b-[1px] z-[40] border-gray-100 dark:border-gray-800 top-0 
+        ${
+          scrollDirection === "down"
+            ? "-translate-y-[70px] sm:-translate-y-16"
+            : "translate-y-0"
+        }
+      `}
+    >
       <nav className="flex justify-between items-center h-14 px-5 mx-auto my-0 max-w-6xl">
         <h1 className="text-lg font-black">
           <Link href="/">heum.dev</Link>
