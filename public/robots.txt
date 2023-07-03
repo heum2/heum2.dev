@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://heum2-dev.vercel.app/
+
+# Sitemaps
+Sitemap: https://heum2-dev.vercel.app/sitemap.xml

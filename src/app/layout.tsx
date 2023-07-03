@@ -15,10 +15,6 @@ export const metadata: Metadata = {
   keywords: config.seo.keywords,
   verification: {
     google: config.googleSearchConsole.config.siteVerification,
-    other: {
-      "naver-site-verification":
-        config.naverSearchConsole.config.siteVerification,
-    },
   },
   openGraph: {
     type: "website",
