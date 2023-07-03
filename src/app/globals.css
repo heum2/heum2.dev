@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url(./code.css);
-@import url(./prose.css);
+@import "./code.css";
+@import "./prose.css";
 
 * {
   box-sizing: border-box;

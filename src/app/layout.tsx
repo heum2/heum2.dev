@@ -25,6 +25,14 @@ export const metadata: Metadata = {
     locale: "ko_KR",
     images: "https://heum2-dev.vercel.app/next.svg",
   },
+  alternates: {
+    canonical: config.link,
+    types: {
+      "application/rss+xml": `${config.link}/rss.xml`,
+      "application/atom+xml": `${config.link}/rss-atom.xml`,
+      "application/json": `${config.link}/feed.json`,
+    },
+  },
 };
 
 export default function RootLayout({

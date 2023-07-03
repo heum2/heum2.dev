@@ -11,6 +11,9 @@ module.exports = {
       typography: ({ theme }) => ({
         invert: {
           css: {
+            blockquote: {
+              color: "red",
+            },
             // "--tw-prose-body": theme("colors.pink[800]"),
             // "--tw-prose-headings": theme("colors.pink[900]"),
             // "--tw-prose-lead": theme("colors.pink[700]"),
@@ -54,32 +57,6 @@ module.exports = {
   plugins: [
     require("@tailwindcss/typography"),
     ({ addComponents, addUtilities }) => {
-      // addComponents({
-      //   ".text-primary": {
-      //     "@apply text-neutral-900 dark:text-neutral-200": "",
-      //   },
-      //   ".text-secondary": {
-      //     "@apply text-neutral-700 dark:text-neutral-350": "",
-      //   },
-      //   ".text-tertiary": {
-      //     "@apply text-neutral-600 dark:text-neutral-400": "",
-      //   },
-      //   ".text-mute": {
-      //     "@apply text-neutral-500 dark:text-neutral-470": "",
-      //   },
-      //   ".bg-primary": {
-      //     "@apply bg-neutral-50 dark:bg-neutral-900": "",
-      //   },
-      //   ".bg-secondary": {
-      //     "@apply bg-neutral-150 dark:bg-neutral-800": "",
-      //   },
-      //   ".bg-tertiary": {
-      //     "@apply bg-neutral-200 dark:bg-neutral-750": "",
-      //   },
-      //   ".bg-mute": {
-      //     "@apply bg-neutral-250 dark:bg-neutral-800": "",
-      //   },
-      // });
       addUtilities(
         {
           ".no-scrollbar": {

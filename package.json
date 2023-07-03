@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "next-sitemap",
+    "postbuild": "next-sitemap && npm run rss",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "rss": "ts-node --project tsconfig.node.json ./scripts/generate-rss.ts"
   },
   "dependencies": {
     "@types/node": "20.3.1",
@@ -19,6 +20,7 @@
     "date-fns": "^2.30.0",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.5",
+    "feed": "^4.2.2",
     "framer-motion": "^10.12.17",
     "next": "13.4.5",
     "next-contentlayer": "^0.3.3",

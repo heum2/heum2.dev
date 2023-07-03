@@ -44,6 +44,7 @@ export default makeSource({
         {
           properties: {
             className: ["anchor"],
+            ariaLabel: "anchor",
           },
         },
       ],
