@@ -19,3 +19,13 @@
 .prose *:hover > .anchor {
   @apply visible;
 }
+
+.prose a {
+  @apply text-current break-words transition-all;
+  @apply decoration-gray-400 underline-offset-2 hover:decoration-gray-300;
+}
+
+.prose a:has(strong) {
+  @apply decoration-yellow-300 decoration-wavy underline-offset-1 hover:decoration-yellow-400;
+  @apply dark:decoration-yellow-300/70 dark:hover:decoration-yellow-300/90;
+}

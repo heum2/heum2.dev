@@ -6,6 +6,8 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeCodeTitles from "rehype-code-titles";
 import rehypePrism from "rehype-prism-plus";
 import { rehypeAccessibleEmojis } from "rehype-accessible-emojis";
+import remarkBreaks from "remark-breaks";
+import rehypeExternalLinks from "rehype-external-links";
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
@@ -34,7 +36,7 @@ export default makeSource({
   contentDirPath: "posts",
   documentTypes: [Post],
   markdown: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm, remarkBreaks],
     rehypePlugins: [
       rehypeSlug,
       rehypeCodeTitles,
@@ -46,6 +48,13 @@ export default makeSource({
             className: ["anchor"],
             ariaLabel: "anchor",
           },
+        },
+      ],
+      [
+        rehypeExternalLinks,
+        {
+          target: "_blank",
+          rel: ["noopener noreferrer"],
         },
       ],
       rehypeAccessibleEmojis,

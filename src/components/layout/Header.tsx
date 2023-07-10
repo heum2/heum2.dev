@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useScrollDirection } from "src/hooks";
@@ -6,6 +6,7 @@ import { useScrollDirection } from "src/hooks";
 export function Header(): JSX.Element {
   const pathname = usePathname();
   const scrollDirection = useScrollDirection();
+  const navigations = useMemo(() => ["About", "Posts", "Log"], []);
 
   return (
     <header
@@ -30,28 +31,19 @@ export function Header(): JSX.Element {
           </div>
         </button>
 
-        <ul className="hidden md:flex gap-4">
-          <li
-            className={`rounded-lg bg-transparent hover:bg-gray-300 px-3 py-1 ${
-              pathname.includes("about") && "font-bold"
-            }`}
-          >
-            <Link href="/about">About</Link>
-          </li>
-          <li
-            className={`rounded-lg bg-transparent hover:bg-gray-300 px-3 py-1 ${
-              pathname.includes("posts") && "font-bold"
-            }`}
-          >
-            <Link href="/posts">Posts</Link>
-          </li>
-          <li
-            className={`rounded-lg bg-transparent hover:bg-gray-300 px-3 py-1 ${
-              pathname.includes("log") && "font-bold"
-            }`}
-          >
-            <Link href="/log">Log</Link>
-          </li>
+        <ul className="hidden md:flex items-center gap-4">
+          {navigations.map(item => (
+            <li key={item}>
+              <Link
+                className={`rounded-lg bg-transparent hover:bg-gray-300 px-3 py-1 ${
+                  pathname.includes("about") && "font-bold"
+                }`}
+                href={`/${item.toLowerCase()}`}
+              >
+                {item}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>

@@ -1,92 +1,79 @@
 {
-    "version": "https://jsonfeed.org/version/1",
-    "title": "heum.dev",
-    "home_page_url": "https://heum2-dev.vercel.app",
-    "feed_url": "https://heum2-dev.vercel.app/json",
-    "description": "개발 및 일기를 끄적이는 블로그",
-    "icon": "https://heum2-dev.vercel.app/images/base.jpg",
-    "author": {
+  "version": "https://jsonfeed.org/version/1",
+  "title": "heum.dev",
+  "home_page_url": "https://heum2-dev.vercel.app",
+  "feed_url": "https://heum2-dev.vercel.app/json",
+  "description": "개발 및 일기를 끄적이는 블로그",
+  "icon": "https://heum2-dev.vercel.app/images/base.jpg",
+  "author": {
+    "name": "heum2",
+    "url": "https://heum2-dev.vercel.app"
+  },
+  "items": [
+    {
+      "id": "/posts/1-git-basic",
+      "content_html": "\nGit을 사용해 본 경험은 로컬 저장소에 진행하고 있는 프로젝트를 저장시키고, `push` 라는 명령어를 사용해 GitHub에 올리는게 전부였다.\nFacebook 생활코딩 커뮤니티를 살펴보는 중 [KISA 핀테크 기술지원센터][KISA 핀테크 기술지원센터]에서 Git에 대한 세미나가 열린다는 글을 보았다.\n가격은 **무료** 였기에 이 기회에 Git에 대해 배우고자 참석했다.\n\n세미나 내용은 Git을 처음 만든 개발자, 배경, 구조, 흐름 순으로 진행되었다.\n\nGit을 처음 만든 사람은 Linux를 만든 [리누스 토발스][linus torvalds]라고 한다.\n\nGit이 처음 나온 배경은 버전을 만들 때마다, 버전의 이름들이 너무 지저분해지고, 또한 이전 버전의 자료들이 필요 할 경우 용량이 어마어마하게 커졌었다. 이러한 불편함을 해결하고자 Git이 나왔다고 한다.\n\n구조적으론 사용자가 실제 작업을 하는 **Working Directory**, 실제 작업을 가상의 공간에 담는 **Stage Area**, Git에 작업이 기록 되어있는 **Repository**로 되어있다.\n\nGit으로 버전관리를 하기 위해선 먼저 작업 공간을 알려줘야 한다. **Working Directory**에서 `git init`을 사용해 **.git** 디렉토리를 생성하면, Git은 '아 여기서 작업을 하는구나' 라고 인식하게 된다. 디렉토리 **.git**이 **Repository**이며, 기록을 위해 **Working Directory**의 작업들을 복사해 **Stage Area**에 넣어준 다음 **Stage Area** 작업들을 **Repository**에 기록하는 순서이다.\n\n세미나에서 **git bash**를 사용해 ComendLine으로 Git을 다루었다.\n\n---\n\n### Git 명령어\n\n```\ngit init # 작업 할 폴더에 .git 폴더 생성\ngit status # Git 상황 확인\ngit add <filename> # 가상환경에 담기\ngit commit -m <commit message> # Git에 기록하기\ngit log # 기록 확인\n```\n\nGit을 기록하기 위해서 가장 먼저 해야되는 것은 상태를 확인하는 것!! `git status`로 **Working Directory** 파일들의 생성, 수정, 삭제를 확인 할 수 있다.\n\n**.git**에 기록 시키기 전 **Stage Area**에 담아야하니 `git add <filename>`을 사용하면 가상의 공간에 담을 수 있다.(파일 전부를 담으려면 `git add .`)\n**Repository**에 기록하는 명령어는 `git commit -m <commit message>`을 사용해 가상의 공간에 담겨있는 작업들을 기록했다. `-m`옵션을 사용하지 않았을 때는 다른 입력창이 나왔는데 편의성과 세미나 시간으로 인해 자세한 건 따로 검색해봐야 할 것 같았다.(참고로 `commit -m`을 할 때 GitHub 로그인을 시켜줬어야 했다.)\n\n이로써 Git으로 버전을 기록하는 것은 끝이 났다.\n\n이후 `git status`로 상태를 확인하면 기록 파일들이 없는 것을 볼 수 있었고, 기록된 정보들을 보기 위해 `git log`를 사용했다.\n`git log`에서 commit 옆에 숫자와 영어로 되어있는 **Commit ID**와 내가 입력한 **Commit Message** 그리고 **HEAD->master**를 볼 수 있었다.\n\n세미나에서 **Commit ID**가 어떻게 만들어지는지도 알려주었는데, 나의 이메일과 기록한 파일, **Commit Message** 그리고 **Parent**를 합쳐 해쉬화 하여 **Commit ID**를 만든다고 한다.\n\n---\n\n## 마치며\n\n내일은 `git reset` 명령어와 `git checkout` 그리고, **HEAD**와 **mater**에 대해서 알려준다고 한다.\n살짝 맛보기로 Git은 불변하기에 파일들을 삭제하지도 변경하지도 않는다는 말로 호기심을 자극했다..\n\nGit이 내부적으로 어떻게 돌아가는지 처음 알게 된 세미나였다. 앞으로도 Git을 써야하는 입장으로 굉장히 도움이 되었고, 같이 개발을 공부하는 사람들에게 Git을 전파해주고 싶어졌다.\n\n[KISA 핀테크 기술지원센터]: https://onoffmix.com/event/203172\n[linus torvalds]: https://ko.wikipedia.org/wiki/%EB%A6%AC%EB%88%84%EC%8A%A4_%ED%86%A0%EB%A5%B4%EB%B0%9C%EC%8A%A4\n",
+      "url": "https://heum2-dev.vercel.app/posts/1-git-basic",
+      "title": "Git의 기초",
+      "summary": "Git을 한번 사용해보자.",
+      "date_modified": "2019-12-11T00:00:00.000Z",
+      "author": {
         "name": "heum2",
         "url": "https://heum2-dev.vercel.app"
+      },
+      "tags": ["Git"]
     },
-    "items": [
-        {
-            "id": "/posts/1-git-basic",
-            "content_html": "\nGit을 사용해 본 경험은 로컬 저장소에 진행하고 있는 프로젝트를 저장시키고, `push` 라는 명령어를 사용해 GitHub에 올리는게 전부였다.\nFacebook 생활코딩 커뮤니티를 살펴보는 중 [KISA 핀테크 기술지원센터][KISA 핀테크 기술지원센터]에서 Git에 대한 세미나가 열린다는 글을 보았다.\n가격은 **무료** 였기에 이 기회에 Git에 대해 배우고자 참석했다.\n\n세미나 내용은 Git을 처음 만든 개발자, 배경, 구조, 흐름 순으로 진행되었다.\n\nGit을 처음 만든 사람은 Linux를 만든 [리누스 토발스][linus torvalds]라고 한다.\n\nGit이 처음 나온 배경은 버전을 만들 때마다, 버전의 이름들이 너무 지저분해지고, 또한 이전 버전의 자료들이 필요 할 경우 용량이 어마어마하게 커졌었다. 이러한 불편함을 해결하고자 Git이 나왔다고 한다.\n\n구조적으론 사용자가 실제 작업을 하는 **Working Directory**, 실제 작업을 가상의 공간에 담는 **Stage Area**, Git에 작업이 기록 되어있는 **Repository**로 되어있다.\n\nGit으로 버전관리를 하기 위해선 먼저 작업 공간을 알려줘야 한다. **Working Directory**에서 `git init`을 사용해 **.git** 디렉토리를 생성하면, Git은 '아 여기서 작업을 하는구나' 라고 인식하게 된다. 디렉토리 **.git**이 **Repository**이며, 기록을 위해 **Working Directory**의 작업들을 복사해 **Stage Area**에 넣어준 다음 **Stage Area** 작업들을 **Repository**에 기록하는 순서이다.\n\n세미나에서 **git bash**를 사용해 ComendLine으로 Git을 다루었다.\n\n---\n\n### Git 명령어\n\n```\ngit init # 작업 할 폴더에 .git 폴더 생성\ngit status # Git 상황 확인\ngit add <filename> # 가상환경에 담기\ngit commit -m <commit message> # Git에 기록하기\ngit log # 기록 확인\n```\n\nGit을 기록하기 위해서 가장 먼저 해야되는 것은 상태를 확인하는 것!! `git status`로 **Working Directory** 파일들의 생성, 수정, 삭제를 확인 할 수 있다.\n\n**.git**에 기록 시키기 전 **Stage Area**에 담아야하니 `git add <filename>`을 사용하면 가상의 공간에 담을 수 있다.(파일 전부를 담으려면 `git add .`)\n**Repository**에 기록하는 명령어는 `git commit -m <commit message>`을 사용해 가상의 공간에 담겨있는 작업들을 기록했다. `-m`옵션을 사용하지 않았을 때는 다른 입력창이 나왔는데 편의성과 세미나 시간으로 인해 자세한 건 따로 검색해봐야 할 것 같았다.(참고로 `commit -m`을 할 때 GitHub 로그인을 시켜줬어야 했다.)\n\n이로써 Git으로 버전을 기록하는 것은 끝이 났다.\n\n이후 `git status`로 상태를 확인하면 기록 파일들이 없는 것을 볼 수 있었고, 기록된 정보들을 보기 위해 `git log`를 사용했다.\n`git log`에서 commit 옆에 숫자와 영어로 되어있는 **Commit ID**와 내가 입력한 **Commit Message** 그리고 **HEAD->master**를 볼 수 있었다.\n\n세미나에서 **Commit ID**가 어떻게 만들어지는지도 알려주었는데, 나의 이메일과 기록한 파일, **Commit Message** 그리고 **Parent**를 합쳐 해쉬화 하여 **Commit ID**를 만든다고 한다.\n\n---\n\n## 마치며\n\n내일은 `git reset` 명령어와 `git checkout` 그리고, **HEAD**와 **mater**에 대해서 알려준다고 한다.\n살짝 맛보기로 Git은 불변하기에 파일들을 삭제하지도 변경하지도 않는다는 말로 호기심을 자극했다..\n\nGit이 내부적으로 어떻게 돌아가는지 처음 알게 된 세미나였다. 앞으로도 Git을 써야하는 입장으로 굉장히 도움이 되었고, 같이 개발을 공부하는 사람들에게 Git을 전파해주고 싶어졌다.\n\n[KISA 핀테크 기술지원센터]: https://onoffmix.com/event/203172\n[linus torvalds]: https://ko.wikipedia.org/wiki/%EB%A6%AC%EB%88%84%EC%8A%A4_%ED%86%A0%EB%A5%B4%EB%B0%9C%EC%8A%A4\n",
-            "url": "https://heum2-dev.vercel.app/posts/1-git-basic",
-            "title": "Git의 기초",
-            "summary": "Git을 한번 사용해보자.",
-            "date_modified": "2019-12-11T00:00:00.000Z",
-            "author": {
-                "name": "heum2",
-                "url": "https://heum2-dev.vercel.app"
-            },
-            "tags": [
-                "Git"
-            ]
-        },
-        {
-            "id": "/posts/2-git-command",
-            "content_html": "\n이번 세미나의 중심 내용은 `git reset`, `git checkout` 명령어와 **HEAD**, **master** 였다.\n\n### $ git log\n\n1일차에서 배운 `git log`는 기록 된 메시지들을 볼 수 있는 명령어였다.\n\n```\n$ git log\ncommit 1b5db033fac67ab86f6f166c3ad6e101411cd906 (HEAD -> master)\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:47 2019 +0900\n\n    working 5\n\ncommit 103e78de24c45cd227f489bc255c831e6cdb09e0\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:31 2019 +0900\n\n    working 4\n\n```\n\n`git log`를 실행시키게 되면 맨 처음 **HEAD**를 본다고 한다. **HEAD -> master** 이 형태를 볼 수 있는데, **HEAD**가 **master**를 가르키고 있구나 정도만 이해하면 될 것 같다.\n\ncommit ID는 commit 옆에 있는`1b5db033fac67ab86f6f166c3ad6e101411cd906` 부분으로 Author email, files, commit message, parent, Date 값 들을 **Hash**로 암호화(Encryption) 한 것이다.\n\n---\n\n### $ git reset\n\n`git reset`은 삭제와 복구를 할 수 있는 명령어라고 한다.\n해당 명령어 사용 방법은 `git reset <commit id>`로 현재 기록하고 있었던 파일들이 동작을 이상하게 하거나 삭제해야 할 경우, 이전 기록의 commit ID로 복구가 되고 이 후에 기록했던 파일들은 삭제가 된다.\n\n```\n$ git reset 103e78de24c45cd227f489bc255c831e6cdb09e0\nUnstaged changes after reset:\nM work.txt\nM work3.txt # 파일 내용들이 변경되었음을 확인할 수 있음\n\n$ git log\ncommit 103e78de24c45cd227f489bc255c831e6cdb09e0 (HEAD -> master)\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:31 2019 +0900\n\n    working 4\n\n```\n\n여기서 **master**가 **1b5db...** 에서 **103e7...**로 commit ID가 변경되었음을 알 수 있었다. 그런데 **1b5db...**은 진짜로 삭제되었을까??  \n다시 `git reset`을 사용해서 확인해보자.\n\n```\n$ git reset 1b5db033fac67ab86f6f166c3ad6e101411cd906\nUnstaged changes after reset:\nM work.txt\n```\n\nwork.txt가 변경되었음을 알려준다. `git log`를 찍어서 확인해보면\n\n```\n$ git log\ncommit 1b5db033fac67ab86f6f166c3ad6e101411cd906 (HEAD -> master)\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:47 2019 +0900\n\n    working 5\n\ncommit 103e78de24c45cd227f489bc255c831e6cdb09e0\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:31 2019 +0900\n\n    working 4\n\n```\n\n다시 복원이 되었다. 즉, **Git 불변성**을 확인 할 수 있었다.  \n만약 `git reset`으로 이전 버전으로 복구한 후 `git commit -m`을 했을 때 어떻게 되는지는 각자 해보면 좋을 것 같다.\n\n---\n\n### $ git checkout\n\n`git checkout`은 시간여행을 해주는 명령어라고 설명해주셨다. 명령어 사용법은 `git reset`과 동일하다.\n\n```\n$ git checkout 103e78d\nNote: switching to '103e78d'. # 103e78d라는 commend ID로 변경되었다는 것을 알 수 있다.\n\nYou are in 'detached HEAD' state. You can look around, make experimental\nchanges and commit them, and you can discard any commits you make in this\nstate without impacting any branches by switching back to a branch.\n\nIf you want to create a new branch to retain commits you create, you may\ndo so (now or later) by using -c with the switch command. Example:\n\ngit switch -c <new-branch-name>\n\nOr undo this operation with:\n\ngit switch -\n\nTurn off this advice by setting config variable advice.detachedHead to false\n\nHEAD is now at 103e78d working 4 # commend ID로 인해 파일들이 변경되었음을 알려줌.\nM work.txt\n\n# git log를 찍어 기록 확인해보자.\n\n$ git log\ncommit 103e78de24c45cd227f489bc255c831e6cdb09e0 (HEAD)\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:31 2019 +0900\n\n    working 4\n\n```\n\n`git checkout`을 했더니 **HEAD -> master**가 **HEAD**로 변경 되어있음을 볼 수 있다.  \n그렇다면 **master**는 어디에 있을까?  \n`git log`에 `--all` 옵션을 붙여서 찾아보자.\n\n```\n$ git log --all\ncommit 1b5db033fac67ab86f6f166c3ad6e101411cd906 (master)\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:47 2019 +0900\n\n    working 5\n\ncommit 103e78de24c45cd227f489bc255c831e6cdb09e0 (HEAD)\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:31 2019 +0900\n\n    working 4\n\n```\n\n**master**를 보면 최근에 기록한 곳의 commit ID를 가지고 있다고 한다.  \n여기에서 **master**는 최근 `git commit`한 commit ID를 가진다는 것, **HEAD**는 현재 작업하고 있는 위치를 알려준다는 것을 알 수 있었다.  \n현재 진행중인 작업을 최근에 작업한 곳으로 이동하고 싶다면 `git checkout master`를 사용하면 된다.  \n만약 `master`가 아닌 commend ID로 입력하게 되면 어떻게 되는지는 직접 해보면 좋을 것 같다.\n\n---\n\n### $ git branch\n\n마지막으로 **master**는 **branch**라고 불려진다. **분기**라는 뜻으로 게임에서 어느정도 캐릭터를 육성하다가 직업을 선택하는 순간이 온다. 그 순간을 **분기**라고 하는데, 프로젝트를 만들 때에도 **분기**가 찾아온다. `git branch`을 사용하면 프로젝트를 하나 더 복사하지 않아도 되는 장점이 생긴다. 명령어 사용 방법은 `git branch  <branch name>`이다.\n\n```\n$ git branch exp\n\n$ git log\ncommit 1b5db033fac67ab86f6f166c3ad6e101411cd906 (HEAD -> master, exp)\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:47 2019 +0900\n\n    working 5\n\ncommit 103e78de24c45cd227f489bc255c831e6cdb09e0\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:31 2019 +0900\n\n    working 4\n\n```\n\nbranch로 master, exp가 있는 것을 볼 수 있다.\n\n---\n\n## 마치며\n\n내일은 **branch**가 여러 개 있고, 작업하고 있는 **branch**가 성공했을 경우 **branch**를 합치고 싶을 때 사용하는 명령어를 배운다고 한다.\n**HEAD**와 **master**가 무엇인지 알게되었고, Git은 변하지 않고 언제나 기록하고 있으니 두려움 없이 `git chechout` 과 `git reset`을 많이 써봐야겠다.\n벌써 Git이 친구 같다.\n",
-            "url": "https://heum2-dev.vercel.app/posts/2-git-command",
-            "title": "Git 명령어",
-            "summary": "Git 명령어에 대해 자세히 알아보자.",
-            "date_modified": "2019-12-12T00:00:00.000Z",
-            "author": {
-                "name": "heum2",
-                "url": "https://heum2-dev.vercel.app"
-            },
-            "tags": [
-                "Git"
-            ]
-        },
-        {
-            "id": "/posts/post-02",
-            "content_html": "\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\n\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\n\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\n\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\n\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\n\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\n\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\n\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\n\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\n",
-            "url": "https://heum2-dev.vercel.app/posts/post-02",
-            "title": "My First Post",
-            "summary": "간단한 소개글",
-            "date_modified": "2021-12-24T00:00:00.000Z",
-            "author": {
-                "name": "heum2",
-                "url": "https://heum2-dev.vercel.app"
-            },
-            "tags": [
-                "My First Tag",
-                "Another Tag"
-            ]
-        },
-        {
-            "id": "/posts/post-03",
-            "content_html": "\nUllamco et nostrud magna commodo nostrud ...\n",
-            "url": "https://heum2-dev.vercel.app/posts/post-03",
-            "title": "나의 첫번째 글",
-            "summary": "간단한 소개글",
-            "date_modified": "2021-12-24T00:00:00.000Z",
-            "author": {
-                "name": "heum2",
-                "url": "https://heum2-dev.vercel.app"
-            },
-            "tags": [
-                "My First Tag",
-                "Another Tag"
-            ]
-        },
-        {
-            "id": "/posts/post-04",
-            "content_html": "\n## Code Example\n\n```js:lib/_app.tsx {1,3-4} showLineNumbers\nfunction fancyAlert(arg) {\n  if (arg) {\n    $.facebox({ div: \"#foo\" });\n  }\n}\n```\n",
-            "url": "https://heum2-dev.vercel.app/posts/post-04",
-            "title": "나의 네번째 글",
-            "summary": "간단한 소개글",
-            "date_modified": "2021-12-24T00:00:00.000Z",
-            "author": {
-                "name": "heum2",
-                "url": "https://heum2-dev.vercel.app"
-            },
-            "tags": [
-                "My First Tag",
-                "Another Tag"
-            ]
-        }
-    ]
+    {
+      "id": "/posts/2-git-command",
+      "content_html": "\n이번 세미나의 중심 내용은 `git reset`, `git checkout` 명령어와 **HEAD**, **master** 였다.\n\n### $ git log\n\n1일차에서 배운 `git log`는 기록 된 메시지들을 볼 수 있는 명령어였다.\n\n```\n$ git log\ncommit 1b5db033fac67ab86f6f166c3ad6e101411cd906 (HEAD -> master)\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:47 2019 +0900\n\n    working 5\n\ncommit 103e78de24c45cd227f489bc255c831e6cdb09e0\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:31 2019 +0900\n\n    working 4\n\n```\n\n`git log`를 실행시키게 되면 맨 처음 **HEAD**를 본다고 한다. **HEAD -> master** 이 형태를 볼 수 있는데, **HEAD**가 **master**를 가르키고 있구나 정도만 이해하면 될 것 같다.\n\ncommit ID는 commit 옆에 있는`1b5db033fac67ab86f6f166c3ad6e101411cd906` 부분으로 Author email, files, commit message, parent, Date 값 들을 **Hash**로 암호화(Encryption) 한 것이다.\n\n---\n\n### $ git reset\n\n`git reset`은 삭제와 복구를 할 수 있는 명령어라고 한다.\n해당 명령어 사용 방법은 `git reset <commit id>`로 현재 기록하고 있었던 파일들이 동작을 이상하게 하거나 삭제해야 할 경우, 이전 기록의 commit ID로 복구가 되고 이 후에 기록했던 파일들은 삭제가 된다.\n\n```\n$ git reset 103e78de24c45cd227f489bc255c831e6cdb09e0\nUnstaged changes after reset:\nM work.txt\nM work3.txt # 파일 내용들이 변경되었음을 확인할 수 있음\n\n$ git log\ncommit 103e78de24c45cd227f489bc255c831e6cdb09e0 (HEAD -> master)\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:31 2019 +0900\n\n    working 4\n\n```\n\n여기서 **master**가 **1b5db...** 에서 **103e7...**로 commit ID가 변경되었음을 알 수 있었다. 그런데 **1b5db...**은 진짜로 삭제되었을까??  \n다시 `git reset`을 사용해서 확인해보자.\n\n```\n$ git reset 1b5db033fac67ab86f6f166c3ad6e101411cd906\nUnstaged changes after reset:\nM work.txt\n```\n\nwork.txt가 변경되었음을 알려준다. `git log`를 찍어서 확인해보면\n\n```\n$ git log\ncommit 1b5db033fac67ab86f6f166c3ad6e101411cd906 (HEAD -> master)\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:47 2019 +0900\n\n    working 5\n\ncommit 103e78de24c45cd227f489bc255c831e6cdb09e0\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:31 2019 +0900\n\n    working 4\n\n```\n\n다시 복원이 되었다. 즉, **Git 불변성**을 확인 할 수 있었다.  \n만약 `git reset`으로 이전 버전으로 복구한 후 `git commit -m`을 했을 때 어떻게 되는지는 각자 해보면 좋을 것 같다.\n\n---\n\n### $ git checkout\n\n`git checkout`은 시간여행을 해주는 명령어라고 설명해주셨다. 명령어 사용법은 `git reset`과 동일하다.\n\n```\n$ git checkout 103e78d\nNote: switching to '103e78d'. # 103e78d라는 commend ID로 변경되었다는 것을 알 수 있다.\n\nYou are in 'detached HEAD' state. You can look around, make experimental\nchanges and commit them, and you can discard any commits you make in this\nstate without impacting any branches by switching back to a branch.\n\nIf you want to create a new branch to retain commits you create, you may\ndo so (now or later) by using -c with the switch command. Example:\n\ngit switch -c <new-branch-name>\n\nOr undo this operation with:\n\ngit switch -\n\nTurn off this advice by setting config variable advice.detachedHead to false\n\nHEAD is now at 103e78d working 4 # commend ID로 인해 파일들이 변경되었음을 알려줌.\nM work.txt\n\n# git log를 찍어 기록 확인해보자.\n\n$ git log\ncommit 103e78de24c45cd227f489bc255c831e6cdb09e0 (HEAD)\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:31 2019 +0900\n\n    working 4\n\n```\n\n`git checkout`을 했더니 **HEAD -> master**가 **HEAD**로 변경 되어있음을 볼 수 있다.  \n그렇다면 **master**는 어디에 있을까?  \n`git log`에 `--all` 옵션을 붙여서 찾아보자.\n\n```\n$ git log --all\ncommit 1b5db033fac67ab86f6f166c3ad6e101411cd906 (master)\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:47 2019 +0900\n\n    working 5\n\ncommit 103e78de24c45cd227f489bc255c831e6cdb09e0 (HEAD)\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:31 2019 +0900\n\n    working 4\n\n```\n\n**master**를 보면 최근에 기록한 곳의 commit ID를 가지고 있다고 한다.  \n여기에서 **master**는 최근 `git commit`한 commit ID를 가진다는 것, **HEAD**는 현재 작업하고 있는 위치를 알려준다는 것을 알 수 있었다.  \n현재 진행중인 작업을 최근에 작업한 곳으로 이동하고 싶다면 `git checkout master`를 사용하면 된다.  \n만약 `master`가 아닌 commend ID로 입력하게 되면 어떻게 되는지는 직접 해보면 좋을 것 같다.\n\n---\n\n### $ git branch\n\n마지막으로 **master**는 **branch**라고 불려진다. **분기**라는 뜻으로 게임에서 어느정도 캐릭터를 육성하다가 직업을 선택하는 순간이 온다. 그 순간을 **분기**라고 하는데, 프로젝트를 만들 때에도 **분기**가 찾아온다. `git branch`을 사용하면 프로젝트를 하나 더 복사하지 않아도 되는 장점이 생긴다. 명령어 사용 방법은 `git branch  <branch name>`이다.\n\n```\n$ git branch exp\n\n$ git log\ncommit 1b5db033fac67ab86f6f166c3ad6e101411cd906 (HEAD -> master, exp)\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:47 2019 +0900\n\n    working 5\n\ncommit 103e78de24c45cd227f489bc255c831e6cdb09e0\nAuthor: HeumHeum2 <jwh6295@gmail.com>\nDate: Wed Dec 11 15:23:31 2019 +0900\n\n    working 4\n\n```\n\nbranch로 master, exp가 있는 것을 볼 수 있다.\n\n---\n\n## 마치며\n\n내일은 **branch**가 여러 개 있고, 작업하고 있는 **branch**가 성공했을 경우 **branch**를 합치고 싶을 때 사용하는 명령어를 배운다고 한다.\n**HEAD**와 **master**가 무엇인지 알게되었고, Git은 변하지 않고 언제나 기록하고 있으니 두려움 없이 `git chechout` 과 `git reset`을 많이 써봐야겠다.\n벌써 Git이 친구 같다.\n",
+      "url": "https://heum2-dev.vercel.app/posts/2-git-command",
+      "title": "Git 명령어",
+      "summary": "Git 명령어에 대해 자세히 알아보자.",
+      "date_modified": "2019-12-12T00:00:00.000Z",
+      "author": {
+        "name": "heum2",
+        "url": "https://heum2-dev.vercel.app"
+      },
+      "tags": ["Git"]
+    },
+    {
+      "id": "/posts/post-02",
+      "content_html": "\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\n\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\n\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\n\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\n\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\n\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\n\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\n\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\n\nUllamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...Ullamco et nostrud magna commodo nostrud ...\n",
+      "url": "https://heum2-dev.vercel.app/posts/post-02",
+      "title": "My First Post",
+      "summary": "간단한 소개글",
+      "date_modified": "2021-12-24T00:00:00.000Z",
+      "author": {
+        "name": "heum2",
+        "url": "https://heum2-dev.vercel.app"
+      },
+      "tags": ["My First Tag", "Another Tag"]
+    },
+    {
+      "id": "/posts/post-03",
+      "content_html": "\nUllamco et nostrud magna commodo nostrud ...\n",
+      "url": "https://heum2-dev.vercel.app/posts/post-03",
+      "title": "나의 첫번째 글",
+      "summary": "간단한 소개글",
+      "date_modified": "2021-12-24T00:00:00.000Z",
+      "author": {
+        "name": "heum2",
+        "url": "https://heum2-dev.vercel.app"
+      },
+      "tags": ["My First Tag", "Another Tag"]
+    },
+    {
+      "id": "/posts/post-04",
+      "content_html": "\n## Code Example\n\n```js:lib/_app.tsx {1,3-4} showLineNumbers\nfunction fancyAlert(arg) {\n  if (arg) {\n    $.facebox({ div: \"#foo\" });\n  }\n}\n```\n",
+      "url": "https://heum2-dev.vercel.app/posts/post-04",
+      "title": "나의 네번째 글",
+      "summary": "간단한 소개글",
+      "date_modified": "2021-12-24T00:00:00.000Z",
+      "author": {
+        "name": "heum2",
+        "url": "https://heum2-dev.vercel.app"
+      },
+      "tags": ["My First Tag", "Another Tag"]
+    }
+  ]
 }
