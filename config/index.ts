@@ -3,7 +3,7 @@ export const config = {
   profile: {
     name: "heum2",
     image: "/images/profile.jpg", // If you want to create your own notion avatar, check out https://notion-avatar.vercel.app
-    role: "frontend developer",
+    role: "Frontend Developer",
     bio: "Coffee is my power ☕️",
     email: "jwh6295@gmail.com",
     linkedin: "eunheum-jo-b9459a1b4",

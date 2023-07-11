@@ -26,6 +26,6 @@
 }
 
 .prose a:has(strong) {
-  @apply decoration-yellow-300 decoration-wavy underline-offset-1 hover:decoration-yellow-400;
-  @apply dark:decoration-yellow-300/70 dark:hover:decoration-yellow-300/90;
+  @apply decoration-cyan-300 decoration-wavy underline-offset-1 hover:decoration-cyan-400;
+  @apply dark:decoration-cyan-300/70 dark:hover:decoration-cyan-300/90;
 }

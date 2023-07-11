@@ -59,7 +59,7 @@ const PostLayout = ({ params }: { params: { slugs: string[] } }) => {
               href={`/series/${post.series}`}
               className="text-sm font-medium underline underline-offset-4 sm:text-base"
             >
-              {post.series}
+              <h2>{post.series}</h2>
             </Link>
           )}
           <div className="flex items-center justify-center gap-2 mt-1 mb-2 text-xs text-gray-600 dark:text-gray-100">

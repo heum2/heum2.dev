@@ -12,15 +12,14 @@ export function SideTag({ children }: Props): JSX.Element {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const tag = searchParams.get("tag");
+  const tag = searchParams.get("tags");
 
   const handleClickTag = () => {
-    let search = "";
-
     if (children !== tag) {
-      search = children;
+      router.push(`/?tags=${children}`);
+    } else {
+      router.push("/");
     }
-    router.push(`/?tag=${search}`);
   };
 
   return (
