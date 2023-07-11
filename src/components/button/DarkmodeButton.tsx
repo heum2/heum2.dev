@@ -1,16 +1,26 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
 import { BsSunFill, BsMoonFill } from "react-icons/bs";
 
 export function DarkmodeButton(): JSX.Element {
+  const [loaded, setLoaded] = useState(false);
+
   const { theme, setTheme } = useTheme();
 
   const handleToggleDarkmode = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
+
+  useEffect(() => {
+    setLoaded(true);
+  }, [setLoaded]);
+
+  if (!loaded) {
+    return <></>;
+  }
 
   return (
     <div className="fixed bottom-4 right-4">

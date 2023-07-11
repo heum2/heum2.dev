@@ -5,6 +5,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { HiArrowUturnUp } from "react-icons/hi2";
 import { BsChatRightText, BsShare } from "react-icons/bs";
+import { usePathname, useSearchParams } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 import { useScroll } from "src/hooks";
 
@@ -15,6 +17,8 @@ type Props = {
 
 export function TocBanner({ value, className }: Props): JSX.Element {
   const { currentSectionSlug } = useScroll(value);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const isSubSectionActive = (subSection: SubSection) => {
     return subSection.slug === currentSectionSlug;
@@ -25,6 +29,19 @@ export function TocBanner({ value, className }: Props): JSX.Element {
       section.slug === currentSectionSlug ||
       section.subSections.some(v => v.slug === currentSectionSlug)
     );
+  };
+
+  const handleCopyLink = () => {
+    window.navigator.clipboard.writeText(window.location.href);
+    toast.success("링크가 복사되었습니다.");
+  };
+
+  const handleScrollTop = () => {
+    window.scrollTo({ top: 0 });
+  };
+
+  const handleScrollComments = () => {
+    document.querySelector("#comments")?.scrollIntoView();
   };
 
   return (
@@ -46,7 +63,7 @@ export function TocBanner({ value, className }: Props): JSX.Element {
                     href={`#${section.slug}`}
                     className={`group block py-1 ${section.subSections && ""} ${
                       isSectionActive(section)
-                        ? "bg-gradient-to-r from-neutral-700 to-yellow-900 bg-clip-text font-extrabold text-transparent dark:from-yellow-400 dark:to-yellow-600"
+                        ? "bg-gradient-to-r from-gray-500 to-sky-500 bg-clip-text font-extrabold text-transparent dark:from-cyan-300 dark:to-sky-600"
                         : "text-secondary hover:text-primary hover:drop-shadow-base-bold dark:hover:drop-shadow-base"
                     } `}
                   >
@@ -59,7 +76,7 @@ export function TocBanner({ value, className }: Props): JSX.Element {
                       href={`#${subSection.slug}`}
                       className={`group flex items-start py-1 ${
                         isSubSectionActive(subSection)
-                          ? "bg-gradient-to-r from-neutral-700 to-yellow-900 bg-clip-text font-extrabold text-transparent dark:from-yellow-400 dark:to-yellow-600"
+                          ? "bg-gradient-to-r from-gray-500 to-sky-500 bg-clip-text font-extrabold text-transparent dark:from-cyan-300 dark:to-sky-600"
                           : "text-secondary hover:text-primary hover:drop-shadow-base-bold dark:hover:drop-shadow-base"
                       }`}
                     >
@@ -86,25 +103,36 @@ export function TocBanner({ value, className }: Props): JSX.Element {
           </ul>
         </div>
       )}
+
       <div className="flex items-center  p-2 bg-zinc-100 dark:bg-[#2b2b2b]">
         <motion.button
+          type="button"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           className="flex h-9 w-9 items-center justify-center rounded-lg transition-all hover:bg-gray-300"
           aria-label="share"
+          onClick={handleCopyLink}
         >
           <BsShare />
         </motion.button>
 
         <motion.button
+          type="button"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           className="flex h-9 w-9 items-center justify-center rounded-lg transition-all hover:bg-gray-300"
           aria-label="scroll-up"
-          onClick={() => window.scrollTo({ top: 0 })}
+          onClick={handleScrollTop}
         >
           <HiArrowUturnUp />
         </motion.button>
         <motion.button
+          type="button"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           className="flex h-9 w-9 items-center justify-center rounded-lg transition-all hover:bg-gray-300"
           aria-label="scroll-down"
-          onClick={() => document.querySelector("#comments")?.scrollIntoView()}
+          onClick={handleScrollComments}
         >
           <BsChatRightText />
         </motion.button>

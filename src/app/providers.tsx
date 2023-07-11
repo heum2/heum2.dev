@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { Header } from "src/components/layout";
 import { DarkmodeButton } from "src/components/button";
 import { useGtag } from "src/hooks";
+import { Toaster } from "react-hot-toast";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   useGtag();
@@ -25,6 +26,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       >
         {children}
       </motion.main>
+      <Toaster />
       <DarkmodeButton />
     </ThemeProvider>
   );

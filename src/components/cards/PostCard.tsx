@@ -11,7 +11,7 @@ export function PostCard(post: Post) {
   const router = useRouter();
 
   const handleMovePage = () => {
-    router.push(post.url);
+    router.push(`/posts/${post.slug}`);
   };
 
   return (
@@ -28,6 +28,7 @@ export function PostCard(post: Post) {
             src={post.thumbnailUrl}
             alt={post.title}
             fill
+            draggable={false}
           />
         </div>
       )}
@@ -40,12 +41,9 @@ export function PostCard(post: Post) {
             <AiOutlineCalendar className="mr-1" />
             {format(parseISO(post.date), "yy.MM.d")}
           </time>
-          <time
-            className="flex items-center"
-            dateTime={post.readingTime.minutes}
-          >
+          <time className="flex items-center" dateTime={post.readingTime}>
             <AiOutlineClockCircle className="mr-1" />
-            {Math.ceil(post.readingTime.minutes)}분
+            {post.readingTime}분
           </time>
         </div>
 

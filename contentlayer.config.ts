@@ -21,13 +21,13 @@ export const Post = defineDocumentType(() => ({
     thumbnailUrl: { type: "string" },
   },
   computedFields: {
-    readingTime: {
-      type: "json",
-      resolve: doc => readingTime(doc.body.raw),
-    },
-    url: {
+    slug: {
       type: "string",
-      resolve: post => `/posts/${post._raw.flattenedPath}`,
+      resolve: post => `/${post._raw.flattenedPath}`,
+    },
+    readingTime: {
+      type: "string",
+      resolve: doc => Math.ceil(readingTime(doc.body.raw).minutes),
     },
   },
 }));

@@ -12,8 +12,9 @@ export function ProfileCard(): JSX.Element {
           <Image
             className="object-cover rounded-2xl"
             src={config.profile.image}
-            fill
             alt="profile"
+            fill
+            draggable={false}
           />
         </div>
         <div className="bg-white p-2 flex flex-col items-center dark:bg-zinc-700 dark:text-white">

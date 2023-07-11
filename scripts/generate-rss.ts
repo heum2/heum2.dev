@@ -30,8 +30,8 @@ const feed = new Feed({
 PostJson.forEach(post => {
   feed.addItem({
     title: post.title,
-    id: post.url,
-    link: `${config.link}${post.url}`,
+    id: post.slug,
+    link: `${config.link}${post.slug}`,
     description: post.description,
     content: post.body.raw,
     author: [master],
