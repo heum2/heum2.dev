@@ -21,7 +21,7 @@ export function ContractCard() {
             className="overflow-hidden p-3 hover:bg-gray-100 dark:hover:bg-zinc-600 rounded-2xl cursor-pointer flex items-center gap-3 text-gray-500 dark:text-white hover:text-black dark:hover:text-white"
           >
             <AiOutlineMail className="text-2xl flex-shrink-0" />
-            <div className="text-sm">Email</div>
+            <span className="text-sm">Email</span>
           </a>
         )}
 
@@ -33,7 +33,7 @@ export function ContractCard() {
             className="p-3 hover:bg-gray-100 dark:hover:bg-zinc-600 rounded-2xl cursor-pointer flex items-center gap-3 text-gray-500 dark:text-white hover:text-black dark:hover:text-white"
           >
             <AiOutlineGithub className="text-2xl" />
-            <div className="text-sm">Github</div>
+            <span className="text-sm">Github</span>
           </a>
         )}
 
@@ -45,7 +45,7 @@ export function ContractCard() {
             className="p-3 hover:bg-gray-100 dark:hover:bg-zinc-600 rounded-2xl cursor-pointer flex items-center gap-3 text-gray-500 dark:text-white hover:text-black dark:hover:text-white"
           >
             <AiOutlineInstagram className="text-2xl" />
-            <div className="text-sm">Instagram</div>
+            <span className="text-sm">Instagram</span>
           </a>
         )}
 
@@ -57,7 +57,7 @@ export function ContractCard() {
             className="p-3 hover:bg-gray-100 dark:hover:bg-zinc-600 rounded-2xl cursor-pointer flex items-center gap-3 text-gray-500 dark:text-white hover:text-black dark:hover:text-white"
           >
             <AiOutlineTwitter className="text-2xl" />
-            <div className="text-sm">Twitter</div>
+            <span className="text-sm">Twitter</span>
           </a>
         )}
 
@@ -66,10 +66,10 @@ export function ContractCard() {
             href={`https://www.linkedin.com/in/${config.profile.linkedin}`}
             rel="noreferrer"
             target="_blank"
-            className="  overflow-hidden p-3 hover:bg-gray-100 dark:hover:bg-zinc-600 rounded-2xl cursor-pointer flex items-center gap-3 text-gray-500 dark:text-white hover:text-black dark:hover:text-white"
+            className="overflow-hidden p-3 hover:bg-gray-100 dark:hover:bg-zinc-600 rounded-2xl cursor-pointer flex items-center gap-3 text-gray-500 dark:text-white hover:text-black dark:hover:text-white"
           >
             <AiFillLinkedin className="text-2xl flex-shrink-0" />
-            <div className="text-sm">Linked in</div>
+            <span className="text-sm">Linked in</span>
           </a>
         )}
       </ul>

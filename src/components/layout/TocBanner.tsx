@@ -9,6 +9,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { toast } from "react-hot-toast";
 
 import { useScroll } from "src/hooks";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 type Props = {
   value: Section[];
@@ -17,8 +18,6 @@ type Props = {
 
 export function TocBanner({ value, className }: Props): JSX.Element {
   const { currentSectionSlug } = useScroll(value);
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   const isSubSectionActive = (subSection: SubSection) => {
     return subSection.slug === currentSectionSlug;
@@ -46,12 +45,12 @@ export function TocBanner({ value, className }: Props): JSX.Element {
 
   return (
     <div
-      className={`overflow-hidden rounded-xl border border-neutral-200 transition-all dark:border-neutral-800 ${
+      className={`overflow-hidden rounded-3xl shadow-md transition-all ${
         className ?? ""
       }`}
     >
       {value.length !== 0 && (
-        <div className="bg-white p-4 pr-2 dark:border-neutral-700 dark:bg-zinc-700">
+        <div className="bg-white p-4 pr-2 dark:bg-zinc-700">
           <ul
             id="toc-content"
             className="flex flex-col items-start justify-start text-sm"
@@ -64,7 +63,7 @@ export function TocBanner({ value, className }: Props): JSX.Element {
                     className={`group block py-1 ${section.subSections && ""} ${
                       isSectionActive(section)
                         ? "bg-gradient-to-r from-gray-500 to-sky-500 bg-clip-text font-extrabold text-transparent dark:from-cyan-300 dark:to-sky-600"
-                        : "text-secondary hover:text-primary hover:drop-shadow-base-bold dark:hover:drop-shadow-base"
+                        : "text-red hover:text-gray-500 hover:drop-shadow-base-bold dark:hover:drop-shadow-base"
                     } `}
                   >
                     {section.text}
@@ -74,26 +73,13 @@ export function TocBanner({ value, className }: Props): JSX.Element {
                   <li key={subSection.slug} className="ml-4">
                     <Link
                       href={`#${subSection.slug}`}
-                      className={`group flex items-start py-1 ${
+                      className={`group flex items-center py-1 ${
                         isSubSectionActive(subSection)
                           ? "bg-gradient-to-r from-gray-500 to-sky-500 bg-clip-text font-extrabold text-transparent dark:from-cyan-300 dark:to-sky-600"
-                          : "text-secondary hover:text-primary hover:drop-shadow-base-bold dark:hover:drop-shadow-base"
+                          : "text-red hover:text-gray-500 hover:drop-shadow-base-bold dark:hover:drop-shadow-base"
                       }`}
                     >
-                      <svg
-                        width="3"
-                        height="24"
-                        viewBox="0 -9 3 24"
-                        className="mr-2 overflow-visible text-tertiary group-hover:text-secondary"
-                      >
-                        <path
-                          d="M0 0L3 3L0 6"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                        />
-                      </svg>
+                      <MdKeyboardArrowRight className="mr-1 overflow-visible text-black" />
                       {subSection.text}
                     </Link>
                   </li>

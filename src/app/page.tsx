@@ -3,7 +3,7 @@ import { compareDesc } from "date-fns";
 import { allPosts } from "contentlayer/generated";
 import { RiArrowDownSFill } from "react-icons/ri";
 
-import { ASide, Footer } from "src/components/layout";
+import { ASide } from "src/components/layout";
 import { ContractCard, ProfileCard, PostCard } from "src/components/cards";
 import { SideTag } from "src/components/tags";
 
@@ -56,7 +56,9 @@ function Home() {
       <ASide className="col-span-3">
         <ProfileCard />
         <ContractCard />
-        <Footer />
+        <div className="flex justify-center cursor-default">
+          <p className="text-gray-500 text-sm mt-3">© heum2 2023</p>
+        </div>
       </ASide>
     </div>
   );
