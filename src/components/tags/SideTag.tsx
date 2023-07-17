@@ -1,8 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useCallback } from "react";
 import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
+
+import { useQuery } from "src/hooks";
 
 type Props = {
   children: string;
@@ -11,15 +13,14 @@ type Props = {
 export function SideTag({ children }: Props): JSX.Element {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { createQueryString } = useQuery();
 
   const tag = searchParams.get("tags");
 
   const handleClickTag = () => {
-    if (children !== tag) {
-      router.push(`/?tags=${children}`);
-    } else {
-      router.push("/");
-    }
+    router.push(
+      `/?${createQueryString("tags", children !== tag ? children : "")}`
+    );
   };
 
   return (
