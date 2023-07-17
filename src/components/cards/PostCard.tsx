@@ -33,9 +33,14 @@ export function PostCard(post: Post) {
         </div>
       )}
       <div className="p-4">
-        <h2 className="text-lg md:text-xl font-medium mb-2 cursor-pointer text-black dark:text-gray-100">
-          {post.title}
-        </h2>
+        <div className="flex items-start mb-2">
+          <h2 className="text-lg md:text-xl font-medium  text-black dark:text-gray-100">
+            {post.title}
+          </h2>
+          <span className="bg-sky-200 ml-auto opacity-90 px-2 py-1 text-sm rounded-lg w-fit dark:bg-sky-400 whitespace-nowrap">
+            {post.category}
+          </span>
+        </div>
         <div className="flex items-center gap-2 mb-2 text-xs text-gray-600 dark:text-gray-100">
           <time className="flex items-center" dateTime={post.date}>
             <AiOutlineCalendar className="mr-1" />

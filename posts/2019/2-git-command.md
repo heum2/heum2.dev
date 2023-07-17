@@ -5,6 +5,7 @@ tags:
   - Git
 date: 2019-12-12
 series: "Git 공부"
+category: "💻 Dev"
 ---
 
 이번 세미나의 중심 내용은 `git reset`, `git checkout` 명령어와 **HEAD**, **master** 였다.

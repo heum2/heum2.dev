@@ -48,7 +48,7 @@ const PostLayout = ({ params }: { params: { slugs: string[] } }) => {
   };
 
   return (
-    <div className="relative lg:flex gap-4 ">
+    <div className="relative lg:flex gap-4">
       <article className="m-auto max-w-4xl w-full bg-white dark:bg-zinc-700 rounded-3xl py-12 px-4 md:px-8 shadow-md ">
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-extrabold tracking-tight sm:text-5xl mx-auto mb-2 max-w-6xl text-center">

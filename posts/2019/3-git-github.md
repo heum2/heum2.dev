@@ -5,6 +5,7 @@ tags:
   - Git
 date: 2019-12-13
 series: "Git 공부"
+category: "💻 Dev"
 ---
 
 이번 세미나는 `git merge`, `git remote add`, `git push`, `git pull` 명령어와 **협업**이 중심 내용이였다.

@@ -1,12 +1,55 @@
-import React, { useMemo } from "react";
+"use client";
+
+import React, { useEffect, useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { AnimatePresence, motion, useCycle } from "framer-motion";
+
 import { useScrollDirection } from "src/hooks";
 
+const itemVariants = {
+  closed: {
+    opacity: 0,
+  },
+  open: { opacity: 1 },
+};
+
+const sideVariants = {
+  closed: {
+    transition: {
+      staggerChildren: 0.2,
+      staggerDirection: -1,
+    },
+  },
+  open: {
+    transition: {
+      staggerChildren: 0.2,
+      staggerDirection: 1,
+    },
+  },
+};
+
 export function Header(): JSX.Element {
+  const [open, cycleOpen] = useCycle(false, true);
+
   const pathname = usePathname();
   const scrollDirection = useScrollDirection();
-  const navigations = useMemo(() => ["About", "Posts", "Log"], []);
+  const navigations = useMemo(
+    () => [
+      { name: "About", to: "/about" },
+      { name: "Posts", to: "/posts" },
+      { name: "Log", to: "/log" },
+    ],
+    []
+  );
+
+  const handleToggleMenu = () => {
+    cycleOpen();
+  };
+
+  useEffect(() => {
+    cycleOpen(0);
+  }, [cycleOpen, pathname]);
 
   return (
     <header
@@ -23,24 +66,67 @@ export function Header(): JSX.Element {
           <Link href="/">heum.dev</Link>
         </h1>
 
-        <button className="border p-2 rounded md:hidden">
-          <div className="space-y-1">
-            <span className="block w-5 h-1 bg-gray-500 dark:bg-gray-400"></span>
-            <span className="block w-5 h-1 bg-gray-500 dark:bg-gray-400"></span>
-            <span className="block w-5 h-1 bg-gray-500 dark:bg-gray-400"></span>
-          </div>
-        </button>
+        <div className="md:hidden">
+          <button className="border p-2 rounded" onClick={handleToggleMenu}>
+            <div className="space-y-1">
+              <span className="block w-5 h-1 bg-gray-500 dark:bg-gray-400"></span>
+              <span className="block w-5 h-1 bg-gray-500 dark:bg-gray-400"></span>
+              <span className="block w-5 h-1 bg-gray-500 dark:bg-gray-400"></span>
+            </div>
+          </button>
+          <AnimatePresence>
+            {open && (
+              <motion.aside
+                className="absolute inset-x-0 z-50 flex flex-col px-5 bg-white dark:bg-zinc-700"
+                initial={{ height: 0 }}
+                animate={{
+                  height: "100vh",
+                }}
+                exit={{
+                  height: 0,
+                  transition: { delay: 0.7, duration: 0.3 },
+                }}
+              >
+                <motion.ul
+                  className="flex flex-col mt-10"
+                  initial="closed"
+                  animate="open"
+                  exit="closed"
+                  variants={sideVariants}
+                >
+                  {navigations.map(item => (
+                    <motion.li
+                      key={item.name}
+                      whileHover={{ scale: 1.02 }}
+                      variants={itemVariants}
+                    >
+                      <Link
+                        className={`text-lg block hover:text-sky-500 dark:hover:text-cyan-300  py-2 ${
+                          pathname.includes(item.name.toLocaleLowerCase()) &&
+                          "text-sky-500 dark:text-cyan-300 font-bold"
+                        }`}
+                        href={item.to}
+                      >
+                        {item.name}
+                      </Link>
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </motion.aside>
+            )}
+          </AnimatePresence>
+        </div>
 
         <ul className="hidden md:flex items-center gap-4">
           {navigations.map(item => (
-            <li key={item}>
+            <li key={item.name}>
               <Link
                 className={`rounded-lg bg-transparent hover:bg-gray-300 px-3 py-1 ${
-                  pathname.includes("about") && "font-bold"
+                  pathname.includes(item.name.toLowerCase()) && "font-bold"
                 }`}
-                href={`/${item.toLowerCase()}`}
+                href={item.to}
               >
-                {item}
+                {item.name}
               </Link>
             </li>
           ))}
