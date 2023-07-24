@@ -3,7 +3,7 @@ import { allPosts } from "contentlayer/generated";
 
 import { ASide, HomePosts } from "src/components/layout";
 import { ContractCard, ProfileCard } from "src/components/cards";
-import { SideTag } from "src/components/tags";
+import { SideTag, TagList } from "src/components/tags";
 
 function Home() {
   const { tags } = useMemo(
@@ -18,11 +18,7 @@ function Home() {
       <ASide className="col-span-2">
         <div>
           <div className="p-1 mb-3 font-bold">🏷️ Tags</div>
-          <ul className="gap-1 flex mobile-x-scroll lg:block mb-6">
-            {tags.map((tag, idx) => (
-              <SideTag key={idx}>{tag}</SideTag>
-            ))}
-          </ul>
+          <TagList className="lg:block" data={tags} />
         </div>
       </ASide>
 

@@ -16,7 +16,7 @@ type Props = {
   className?: string;
 };
 
-export function TocBanner({ value, className }: Props): JSX.Element {
+export function MobileTocBanner({ value, className }: Props): JSX.Element {
   const { currentSectionSlug } = useScroll(value);
 
   const isSubSectionActive = (subSection: SubSection) => {
@@ -30,36 +30,23 @@ export function TocBanner({ value, className }: Props): JSX.Element {
     );
   };
 
-  const handleCopyLink = () => {
-    window.navigator.clipboard.writeText(window.location.href);
-    toast.success("링크가 복사되었습니다.");
-  };
-
-  const handleScrollTop = () => {
-    window.scrollTo({ top: 0 });
-  };
-
-  const handleScrollComments = () => {
-    document.querySelector("#comments")?.scrollIntoView();
-  };
-
   if (value.length < 1) {
     return <></>;
   }
 
   return (
     <div
-      className={`overflow-hidden rounded-3xl shadow-md transition-all ${
+      className={`max-h-[300px] rounded-md mb-5 shadow-md transition-all ${
         className ?? ""
       }`}
     >
-      <div className="flex items-center p-4 pr-2 bg-zinc-100 dark:bg-[#2b2b2b]">
+      <div className="flex items-center p-4 pr-2 bg-zinc-100 dark:bg-black">
         <h4 className="font-bold flex items-center gap-2">
           <AiOutlineUnorderedList />
           목차
         </h4>
       </div>
-      <div className="bg-white p-4 pr-2 dark:bg-zinc-700">
+      <div className="bg-white p-4 pr-2 dark:bg-[#2b2b2b]">
         <ul
           id="toc-content"
           className="flex flex-col items-start justify-start text-sm"
@@ -96,40 +83,6 @@ export function TocBanner({ value, className }: Props): JSX.Element {
             </Fragment>
           ))}
         </ul>
-      </div>
-
-      <div className="flex items-center  p-2 bg-zinc-100 dark:bg-[#2b2b2b]">
-        <motion.button
-          type="button"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="flex h-9 w-9 items-center justify-center rounded-lg transition-all hover:bg-gray-300"
-          aria-label="share"
-          onClick={handleCopyLink}
-        >
-          <BsShare />
-        </motion.button>
-
-        <motion.button
-          type="button"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="flex h-9 w-9 items-center justify-center rounded-lg transition-all hover:bg-gray-300"
-          aria-label="scroll-up"
-          onClick={handleScrollTop}
-        >
-          <HiArrowUturnUp />
-        </motion.button>
-        <motion.button
-          type="button"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="flex h-9 w-9 items-center justify-center rounded-lg transition-all hover:bg-gray-300"
-          aria-label="scroll-down"
-          onClick={handleScrollComments}
-        >
-          <BsChatRightText />
-        </motion.button>
       </div>
     </div>
   );

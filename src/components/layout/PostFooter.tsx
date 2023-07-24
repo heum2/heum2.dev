@@ -40,7 +40,7 @@ export function PostFooter({ prevPost, nextPost }: Props): JSX.Element {
             className="group gap-1 md:gap-3 px-4 py-2 md:pl-0 flex items-center rounded-lg transition-all hover:bg-gray-300"
           >
             <MdKeyboardArrowLeft />
-            <span>{prevPost.title}</span>
+            <span className="break-keep">{prevPost.title}</span>
           </Link>
         )}
         {nextPost && (
@@ -48,7 +48,7 @@ export function PostFooter({ prevPost, nextPost }: Props): JSX.Element {
             href={`/posts/${nextPost.slug}`}
             className="group ml-auto gap-1 px-4 py-2 md:pr-0 text-right flex items-center rounded-lg transition-all hover:bg-gray-300"
           >
-            <span>{nextPost.title}</span>
+            <span className="break-keep">{nextPost.title}</span>
             <MdKeyboardArrowRight />
           </Link>
         )}
