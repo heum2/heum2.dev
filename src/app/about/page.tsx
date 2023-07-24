@@ -8,9 +8,13 @@ function About({}: Props): JSX.Element {
   return (
     <article className="w-full bg-white dark:bg-zinc-700 rounded-3xl py-12 px-4 md:px-8 shadow-md">
       <h1 className="text-2xl md:text-4xl font-bold mb-5">
-        문제 해결에 주력하는 개발자, 조은흠입니다.
+        조은흠 | 문제 해결에 주력하는 개발자
       </h1>
+      <hr />
 
+      <div></div>
+
+      {/*       
       <div>
         <h1 className="text-2xl font-bold mb-2 decoration-transparent">
           💁🏻 <mark className="text-sky-400 bg-transparent">About Me</mark>
@@ -39,7 +43,7 @@ function About({}: Props): JSX.Element {
           </li>
           <li>일은 체력이라 생각해 꾸준히 운동 합니다.</li>
         </ul>
-      </div>
+      </div> */}
 
       <p></p>
     </article>

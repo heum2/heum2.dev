@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
-        <title>heum.dev</title>
+        <title>heum2.dev</title>
         <link>https://heum2-dev.vercel.app</link>
         <description>개발 및 일기를 끄적이는 블로그</description>
         <lastBuildDate>Mon, 03 Jul 2023 08:11:38 GMT</lastBuildDate>
@@ -9,7 +9,7 @@
         <generator>generate-rss</generator>
         <language>ko</language>
         <image>
-            <title>heum.dev</title>
+            <title>heum2.dev</title>
             <url>https://heum2-dev.vercel.app/images/base.jpg</url>
             <link>https://heum2-dev.vercel.app</link>
         </image>

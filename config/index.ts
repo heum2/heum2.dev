@@ -13,7 +13,7 @@ export const config = {
   },
   // blog setting (required)
   blog: {
-    title: "heum.dev",
+    title: "heum2.dev",
     description: "개발 및 일기를 끄적이는 블로그",
   },
   // CONFIG configration (required)

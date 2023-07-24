@@ -63,7 +63,7 @@ export function Header(): JSX.Element {
     >
       <nav className="flex justify-between items-center h-14 px-5 mx-auto my-0 max-w-6xl">
         <h1 className="text-lg font-black hover:text-sky-500 dark:hover:text-cyan-300 transition-colors">
-          <Link href="/">heum.dev</Link>
+          <Link href="/">heum2.dev</Link>
         </h1>
 
         <div className="md:hidden">
