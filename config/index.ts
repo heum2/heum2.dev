@@ -10,6 +10,7 @@ export const config = {
     github: "heum2",
     instagram: "",
     twitter: "",
+    about: "https://heum2.notion.site/77303a5be4d3443fb12c8984b4778f43?pvs=4",
   },
   // blog setting (required)
   blog: {
@@ -17,12 +18,12 @@ export const config = {
     description: "개발 및 일기를 끄적이는 블로그",
   },
   // CONFIG configration (required)
-  link: "https://heum2-dev.vercel.app",
+  link: "https://heum2.dev",
   since: 2023, // If leave this empty, current year will be used.
   lang: "en-US", // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES', 'ko-KR']
   ogImageGenerateURL: "https://og-image-korean.vercel.app", // The link to generate OG image, don't end with a slash
   seo: {
-    keywords: ["Blog", "Website", "Notion"],
+    keywords: ["Blog", "Website"],
   },
 
   // notion configuration (required)

@@ -15,6 +15,14 @@ export const metadata: Metadata = {
   keywords: config.seo.keywords,
   verification: {
     google: config.googleSearchConsole.config.siteVerification,
+    other: {
+      "naver-site-verification":
+        config.naverSearchConsole.config.siteVerification,
+    },
+  },
+  icons: {
+    icon: "./favicon.ico",
+    apple: "./favicon.ico",
   },
   openGraph: {
     type: "website",
@@ -23,7 +31,7 @@ export const metadata: Metadata = {
     url: config.link,
     siteName: config.blog.title,
     locale: "ko_KR",
-    images: "https://heum2-dev.vercel.app/next.svg",
+    images: "https://heum2.dev/images/profile.jpg",
   },
   alternates: {
     canonical: config.link,

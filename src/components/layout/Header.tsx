@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useCycle } from "framer-motion";
 
 import { useScrollDirection } from "src/hooks";
+import { config } from "config";
 
 const itemVariants = {
   closed: {
@@ -34,14 +35,6 @@ export function Header(): JSX.Element {
 
   const pathname = usePathname();
   const scrollDirection = useScrollDirection();
-  const navigations = useMemo(
-    () => [
-      { name: "About", to: "/about" },
-      { name: "Posts", to: "/posts" },
-      { name: "Log", to: "/log" },
-    ],
-    []
-  );
 
   const handleToggleMenu = () => {
     cycleOpen();
@@ -94,23 +87,18 @@ export function Header(): JSX.Element {
                   exit="closed"
                   variants={sideVariants}
                 >
-                  {navigations.map(item => (
-                    <motion.li
-                      key={item.name}
-                      whileHover={{ scale: 1.02 }}
-                      variants={itemVariants}
+                  <motion.li
+                    whileHover={{ scale: 1.02 }}
+                    variants={itemVariants}
+                  >
+                    <Link
+                      className="text-lg block hover:text-sky-500 dark:hover:text-cyan-300  py-2"
+                      href={config.profile.about}
+                      target="_blank"
                     >
-                      <Link
-                        className={`text-lg block hover:text-sky-500 dark:hover:text-cyan-300  py-2 ${
-                          pathname.includes(item.name.toLocaleLowerCase()) &&
-                          "text-sky-500 dark:text-cyan-300 font-bold"
-                        }`}
-                        href={item.to}
-                      >
-                        {item.name}
-                      </Link>
-                    </motion.li>
-                  ))}
+                      About
+                    </Link>
+                  </motion.li>
                 </motion.ul>
               </motion.aside>
             )}
@@ -118,18 +106,15 @@ export function Header(): JSX.Element {
         </div>
 
         <ul className="hidden md:flex items-center gap-4">
-          {navigations.map(item => (
-            <li key={item.name}>
-              <Link
-                className={`rounded-lg bg-transparent hover:bg-gray-300 px-3 py-1 ${
-                  pathname.includes(item.name.toLowerCase()) && "font-bold"
-                }`}
-                href={item.to}
-              >
-                {item.name}
-              </Link>
-            </li>
-          ))}
+          <li>
+            <Link
+              className="rounded-lg bg-transparent hover:bg-gray-300 px-3 py-1"
+              href={config.profile.about}
+              target="_blank"
+            >
+              About
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>
