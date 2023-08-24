@@ -26,7 +26,7 @@ export const generateMetadata = ({
     notFound();
   }
 
-  return { title: post.title };
+  return { title: post.title, description: post.description };
 };
 
 const PostLayout = ({ params }: { params: { slugs: string[] } }) => {
