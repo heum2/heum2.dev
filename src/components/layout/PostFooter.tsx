@@ -18,11 +18,13 @@ export function PostFooter({ prevPost, nextPost }: Props): JSX.Element {
           <div className="w-16 h-16 md:h-24 md:w-24 select-none overflow-hidden rounded-full">
             <div className="relative w-full after:content-[''] after:block after:pb-[100%]">
               <Image
+                priority
                 className="object-cover"
                 src={config.profile.image}
                 alt="profile"
                 fill
                 draggable={false}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
           </div>

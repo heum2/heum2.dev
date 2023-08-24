@@ -1,7 +1,6 @@
 import { format, parseISO } from "date-fns";
 import { allPosts } from "contentlayer/generated";
 import { AiOutlineCalendar, AiOutlineClockCircle } from "react-icons/ai";
-import Link from "next/link";
 
 import Utterances from "src/components/comments";
 import { Tag } from "src/components/tags";
@@ -56,12 +55,9 @@ const PostLayout = ({ params }: { params: { slugs: string[] } }) => {
               {post.title}
             </h1>
             {post.series && (
-              <Link
-                href={`/series/${post.series}`}
-                className="text-sm font-medium underline underline-offset-4 sm:text-base"
-              >
-                <h2>{post.series}</h2>
-              </Link>
+              <h2 className="text-sm font-medium underline underline-offset-4 sm:text-base">
+                {post.series}
+              </h2>
             )}
             <div className="flex items-center justify-center gap-2 mt-1 mb-2 text-xs text-gray-600 dark:text-gray-100">
               <time className="flex items-center" dateTime={post.date}>
