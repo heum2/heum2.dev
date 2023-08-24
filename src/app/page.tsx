@@ -3,7 +3,7 @@ import { allPosts } from "contentlayer/generated";
 
 import { ASide, HomePosts } from "src/components/layout";
 import { ContractCard, ProfileCard } from "src/components/cards";
-import { SideTag, TagList } from "src/components/tags";
+import { TagList } from "src/components/tags";
 
 function Home() {
   const { tags } = useMemo(
@@ -28,7 +28,7 @@ function Home() {
         <ProfileCard />
         <ContractCard />
         <div className="flex justify-center cursor-default">
-          <p className="text-gray-500 text-sm mt-3">© heum2 2023</p>
+          <p className="text-gray-700 text-sm mt-3">© heum2 2023</p>
         </div>
       </ASide>
     </div>

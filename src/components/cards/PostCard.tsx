@@ -61,7 +61,7 @@ export function PostCard(post: Post) {
         <ul className="flex gap-2">
           {post.tags.map(item => (
             <li
-              className="text-xs text-gray-500 font-normal rounded-lg bg-gray-200 px-2 py-1 cursor-pointer"
+              className="text-xs text-gray-600 font-normal rounded-lg bg-gray-200 px-2 py-1 cursor-pointer"
               key={item}
             >
               {item}

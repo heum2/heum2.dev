@@ -29,6 +29,7 @@ export function DarkmodeButton(): JSX.Element {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={handleToggleDarkmode}
+        aria-label="toggle-darkmode"
         className="bg-current p-2 rounded-full text-gray-500 dark:text-gray-400"
       >
         {theme === "light" ? (

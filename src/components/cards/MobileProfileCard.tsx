@@ -11,11 +11,13 @@ export function MobileProfileCard(): JSX.Element {
         <div className="flex items-center gap-2  md:gap-6">
           <div className="relative w-28 h-28">
             <Image
-              fill
+              priority
               src={config.profile.image}
-              className="object-cover rounded-2xl"
               alt="profile"
+              fill
+              className="object-cover rounded-2xl"
               draggable={false}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
           <div className="h-fit">

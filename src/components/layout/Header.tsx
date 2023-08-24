@@ -60,7 +60,12 @@ export function Header(): JSX.Element {
         </h1>
 
         <div className="md:hidden">
-          <button className="border p-2 rounded" onClick={handleToggleMenu}>
+          <button
+            type="button"
+            className="border p-2 rounded"
+            aria-label="menu"
+            onClick={handleToggleMenu}
+          >
             <div className="space-y-1">
               <span className="block w-5 h-1 bg-gray-500 dark:bg-gray-400"></span>
               <span className="block w-5 h-1 bg-gray-500 dark:bg-gray-400"></span>
