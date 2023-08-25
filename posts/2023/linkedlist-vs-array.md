@@ -3,7 +3,7 @@ title: "Linked List와 Array 비교"
 description: "Linked List와 Array 비교"
 tags:
   - 자료구조
-  - Javascript
+  - JavaScript
 date: 2023-08-24
 category: "💻 Dev"
 thumbnailUrl: "linkedlist-vs-array.png"
