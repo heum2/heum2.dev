@@ -6,8 +6,8 @@ import Image from "next/image";
 import { config } from "config";
 
 type Props = {
-  prevPost: Pick<Post, "title" | "slug"> | null;
-  nextPost: Pick<Post, "title" | "slug"> | null;
+  prevPost: Pick<Post, "title" | "slug"> | undefined;
+  nextPost: Pick<Post, "title" | "slug"> | undefined;
 };
 
 export function PostFooter({ prevPost, nextPost }: Props): JSX.Element {

@@ -1,13 +1,13 @@
-import { format, parseISO } from "date-fns";
+import { compareDesc, format, parseISO } from "date-fns";
 import { allPosts } from "contentlayer/generated";
 import { AiOutlineCalendar, AiOutlineClockCircle } from "react-icons/ai";
+import { notFound } from "next/navigation";
 
 import Utterances from "src/components/comments";
 import { Tag } from "src/components/tags";
 import { MobileTocBanner, PostFooter, TocBanner } from "src/components/layout";
 
 import { parseToc } from "src/libs";
-import { notFound } from "next/navigation";
 
 export const generateStaticParams = async () =>
   allPosts.map(post => ({ slug: post.slug }));
@@ -41,9 +41,15 @@ const PostLayout = ({ params }: { params: { slugs: string[] } }) => {
 
   const tableOfContents = parseToc(post.body.raw);
 
-  const postFooterProps = {
-    prevPost: allPosts.at(postIndex - 1) ?? null,
-    nextPost: allPosts.at(postIndex + 1) ?? null,
+  const postFooter = () => {
+    const posts = allPosts.sort((a, b) =>
+      compareDesc(new Date(a.date), new Date(b.date))
+    );
+
+    return {
+      prevPost: posts[postIndex + 1],
+      nextPost: posts[postIndex - 1],
+    };
   };
 
   return (
@@ -90,8 +96,8 @@ const PostLayout = ({ params }: { params: { slugs: string[] } }) => {
           </div>
 
           <PostFooter
-            prevPost={postFooterProps.prevPost}
-            nextPost={postFooterProps.nextPost}
+            prevPost={postFooter().prevPost}
+            nextPost={postFooter().nextPost}
           />
 
           <Utterances />
