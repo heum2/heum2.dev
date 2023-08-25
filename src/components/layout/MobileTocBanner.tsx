@@ -2,10 +2,6 @@
 
 import React, { Fragment } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { HiArrowUturnUp } from "react-icons/hi2";
-import { BsChatRightText, BsShare } from "react-icons/bs";
-import { toast } from "react-hot-toast";
 
 import { useScroll } from "src/hooks";
 import { MdKeyboardArrowRight } from "react-icons/md";
@@ -36,11 +32,11 @@ export function MobileTocBanner({ value, className }: Props): JSX.Element {
 
   return (
     <div
-      className={`max-h-[300px] rounded-md mb-5 shadow-md transition-all ${
+      className={`max-h-[300px] overflow-y-scroll rounded-md mb-5 shadow-md transition-all ${
         className ?? ""
       }`}
     >
-      <div className="flex items-center p-4 pr-2 bg-zinc-100 dark:bg-black">
+      <div className="sticky top-0 flex items-center p-4 pr-2 bg-zinc-100 dark:bg-black">
         <h4 className="font-bold flex items-center gap-2">
           <AiOutlineUnorderedList />
           목차

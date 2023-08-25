@@ -42,8 +42,8 @@ const PostLayout = ({ params }: { params: { slugs: string[] } }) => {
   const tableOfContents = parseToc(post.body.raw);
 
   const postFooterProps = {
-    prevPost: allPosts.at(postIndex + 1) ?? null,
-    nextPost: allPosts.at(postIndex - 1) ?? null,
+    prevPost: allPosts.at(postIndex - 1) ?? null,
+    nextPost: allPosts.at(postIndex + 1) ?? null,
   };
 
   return (
