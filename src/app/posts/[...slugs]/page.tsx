@@ -39,9 +39,7 @@ const PostLayout = ({ params }: { params: { slugs: string[] } }) => {
     notFound();
   }
 
-  const tableOfContents = parseToc(post.body.raw);
-
-  const postFooter = () => {
+  const navigatePosts = () => {
     const posts = allPosts.sort((a, b) =>
       compareDesc(new Date(a.date), new Date(b.date))
     );
@@ -79,7 +77,7 @@ const PostLayout = ({ params }: { params: { slugs: string[] } }) => {
           </div>
 
           <div className="block xl:hidden">
-            <MobileTocBanner value={tableOfContents} />
+            <MobileTocBanner value={parseToc(post.body.raw)} />
           </div>
 
           <div
@@ -96,8 +94,8 @@ const PostLayout = ({ params }: { params: { slugs: string[] } }) => {
           </div>
 
           <PostFooter
-            prevPost={postFooter().prevPost}
-            nextPost={postFooter().nextPost}
+            prevPost={navigatePosts().prevPost}
+            nextPost={navigatePosts().nextPost}
           />
 
           <Utterances />
@@ -106,7 +104,7 @@ const PostLayout = ({ params }: { params: { slugs: string[] } }) => {
 
       <div className="ml-auto">
         <div className="sticky top-[81px] hidden xl:block min-w-[240px] max-w-[260px] self-start">
-          <TocBanner value={tableOfContents} />
+          <TocBanner value={parseToc(post.body.raw)} />
         </div>
       </div>
     </div>
