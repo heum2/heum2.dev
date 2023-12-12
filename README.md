@@ -15,7 +15,7 @@
 - 다크모드 기능
 - 블로그 목차 기능
 
-## 개선사항
+## 개선 사항
 - 홈 화면 UI 변경
 - projects, posts, about탭 및 UI 구현
 - Google Search 제대로 안되는 이슈로 인해 RSS 코드 수정
