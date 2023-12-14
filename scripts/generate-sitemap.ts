@@ -17,7 +17,7 @@ ${config.menus
   .join("\n")}
 ${PostJson.map(
   series =>
-    `<url><loc>${siteUrl}${series.slug}</loc><changefreq>daily</changefreq></url>`
+    `<url><loc>${siteUrl}/posts${series.slug}</loc><changefreq>daily</changefreq></url>`
 ).join("\n")}
 </urlset>`;
 
