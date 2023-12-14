@@ -3,6 +3,7 @@ title: Windows PowerShell을 꾸며보자
 description: 기본 터미널은 너무 칙칙하다. 이번에 PowerShell을 이쁘게 꾸며보자.
 tags:
   - powershell
+  - oh-my-posh
 date: 2023-12-14
 category: 💻 Dev
 thumbnailUrl: oh-my-posh.png

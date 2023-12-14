@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "next-sitemap && npm run rss",
+    "postbuild": "npm run sitemap && npm run rss",
     "start": "next start",
     "lint": "next lint",
+    "sitemap": "ts-node --project tsconfig.node.json ./scripts/generate-sitemap.ts",
     "rss": "ts-node --project tsconfig.node.json ./scripts/generate-rss.ts"
   },
   "dependencies": {

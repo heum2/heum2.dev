@@ -26,7 +26,7 @@ export function PostCard(post: Post) {
       {post.thumbnailUrl && (
         <div className="relative w-full pb-[66%] lg:pb-[50%] bg-gray-200 dark:bg-zinc-700">
           <Image
-            className="object-cover"
+            className="object-contain"
             src={`${config.archive}/${post.thumbnailUrl}`}
             alt={post.title}
             fill

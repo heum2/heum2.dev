@@ -26,12 +26,10 @@ export const config = {
   seo: {
     keywords: ["Blog", "Website"],
   },
-
   // notion configuration (required)
   notionConfig: {
     pageId: process.env.NOTION_PAGE_ID,
   },
-
   // plugin configuration (optional)
   googleAnalytics: {
     enable: process.env.NODE_ENV === "production",
@@ -65,4 +63,8 @@ export const config = {
       label: "💬 Utterances",
     },
   },
+  menus: [
+    { label: "Posts", path: "/posts" },
+    { label: "About", path: "/about" },
+  ],
 };
