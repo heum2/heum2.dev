@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "npm run sitemap && npm run rss",
+    "postbuild": "npm run rss",
     "start": "next start",
     "lint": "next lint",
     "sitemap": "ts-node --project tsconfig.node.json ./scripts/generate-sitemap.ts",
@@ -38,7 +38,6 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
     "@types/gtag.js": "^0.0.12",
-    "next-sitemap": "^4.1.3",
     "rehype-accessible-emojis": "^0.3.2",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-code-titles": "^1.2.0",
