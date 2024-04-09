@@ -55,7 +55,7 @@ const PostLayout = ({ params }: { params: { slugs: string[] } }) => {
       <div className="m-auto max-w-4xl w-full">
         <article className="bg-white dark:bg-zinc-700 rounded-3xl py-12 px-4 md:px-8 shadow-md">
           <div className="mb-8 text-center">
-            <h1 className="break-keep text-3xl font-extrabold tracking-tight sm:text-5xl mx-auto mb-2 max-w-6xl text-center">
+            <h1 className="break-keep text-3xl font-extrabold tracking-tight sm:text-4xl mx-auto mb-2 max-w-6xl text-center">
               {post.title}
             </h1>
             {post.series && (
@@ -63,7 +63,7 @@ const PostLayout = ({ params }: { params: { slugs: string[] } }) => {
                 {post.series}
               </h2>
             )}
-            <div className="flex items-center justify-center gap-2 mt-3 mb-2 text-xs text-gray-600 dark:text-gray-100">
+            <div className="flex items-center justify-center gap-2 mt-4 mb-2 text-xs text-gray-600 dark:text-gray-100">
               <time className="flex items-center" dateTime={post.date}>
                 <AiOutlineCalendar className="mr-1" />
                 {format(parseISO(post.date), "yy.MM.d")}

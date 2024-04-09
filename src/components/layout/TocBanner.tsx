@@ -62,11 +62,11 @@ export function TocBanner({ value, className }: Props): JSX.Element {
       <div className="bg-white p-4 pr-2 dark:bg-zinc-700">
         <ul
           id="toc-content"
-          className="flex flex-col items-start justify-start text-sm"
+          className="flex flex-col items-start justify-start text-xs"
         >
           {value.map(section => (
             <Fragment key={section.slug}>
-              <li>
+              <li className="text-sm">
                 <a
                   href={`#${section.slug}`}
                   className={`group block py-1 ${section.subSections && ""} ${
