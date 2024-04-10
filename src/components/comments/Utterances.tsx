@@ -18,6 +18,7 @@ function Utterances(): JSX.Element {
 
     script.setAttribute("theme", "github-light");
     script.setAttribute("crossorigin", "anonymous");
+    script.setAttribute("rel", "preconnect");
 
     script.onload = ev => {
       const comments = document.getElementById("comments");

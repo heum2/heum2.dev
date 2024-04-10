@@ -9,6 +9,7 @@ const Scripts = () => (
         <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=${config.googleAnalytics.config.measurementId}`}
+          rel="preconnect"
         />
         <Script
           strategy="afterInteractive"
@@ -31,6 +32,7 @@ const Scripts = () => (
         async
         src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${config.googleAdsense.config.client}`}
         crossOrigin="anonymous"
+        rel="preconnect"
       ></Script>
     )}
   </>
