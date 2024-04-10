@@ -64,6 +64,7 @@ export const config = {
     },
   },
   menus: [
+    { label: "", path: "" },
     { label: "Posts", path: "/posts" },
     { label: "About", path: "/about" },
   ],

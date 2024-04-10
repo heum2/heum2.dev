@@ -22,11 +22,7 @@ export const generateMetadata = ({
   const slug = `/${[...slugs].join("/")}`;
   const post = allPosts.find(post => post.slug === slug);
 
-  if (!post) {
-    notFound();
-  }
-
-  return { title: post.title, description: post.description };
+  return { title: post?.title, description: post?.description };
 };
 
 const PostLayout = ({ params }: { params: { slugs: string[] } }) => {
