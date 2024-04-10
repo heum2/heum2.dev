@@ -10,7 +10,7 @@ import { MdExpandMore } from "react-icons/md";
 import { PostCard } from "../cards";
 import { useQuery } from "src/hooks";
 import { MobileProfileCard } from "../cards/MobileProfileCard";
-import { SideTag, TagList } from "../tags";
+import { TagList } from "../tags";
 
 export function HomePosts(): JSX.Element {
   const [isCategoryMenu, setIsCategoryMenu] = useState(false);

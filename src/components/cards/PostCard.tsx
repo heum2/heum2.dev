@@ -60,14 +60,21 @@ export function PostCard(post: Post) {
           </p>
         </div>
 
-        <ul className="flex gap-2">
+        <ul
+          className="flex gap-2"
+          onClick={e => {
+            e.stopPropagation();
+            const target = e.target as HTMLLIElement;
+            router.push(`/tags/${target.innerText}`);
+          }}
+        >
           {post.tags.map(item => (
-            <li
-              className="text-xs text-gray-600 font-normal rounded-lg bg-gray-200 px-2 py-1 cursor-pointer"
+            <motion.li
+              className="text-xs text-gray-600 font-normal rounded-lg bg-gray-200 px-2 py-1 cursor-pointer hover:bg-gray-300"
               key={item}
             >
               {item}
-            </li>
+            </motion.li>
           ))}
         </ul>
       </div>
