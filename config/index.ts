@@ -12,7 +12,6 @@ export const config = {
     twitter: "",
     about: "https://heum2.notion.site/77303a5be4d3443fb12c8984b4778f43?pvs=4",
   },
-  archive: "https://raw.githubusercontent.com/heum2/image-archive/main",
   // blog setting (required)
   blog: {
     title: "heum2.dev",

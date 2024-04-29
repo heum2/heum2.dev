@@ -32,7 +32,7 @@ const PostLayout = ({ params }: { params: { slugs: string[] } }) => {
   const postIndex = allPosts.findIndex(post => post.slug === slug);
 
   if (!post || postIndex === -1) {
-    notFound();
+    return notFound();
   }
 
   const navigatePosts = () => {

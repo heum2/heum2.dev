@@ -7,8 +7,6 @@ import { AiOutlineCalendar, AiOutlineClockCircle } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-import { config } from "config";
-
 export function PostCard(post: Post) {
   const router = useRouter();
 
@@ -27,7 +25,7 @@ export function PostCard(post: Post) {
         <div className="relative w-full pb-[66%] lg:pb-[50%] bg-gray-200 dark:bg-zinc-700">
           <Image
             className="object-contain"
-            src={`${config.archive}/${post.thumbnailUrl}`}
+            src={`/images/${post.thumbnailUrl}`}
             alt={post.title}
             fill
             draggable={false}

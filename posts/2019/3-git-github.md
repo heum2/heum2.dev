@@ -147,26 +147,26 @@ $ git log --oneline --all --graph
 혹여나 노트북이 말썽을 일으켜 포맷을 해야된다면 지금까지 작업했던 것이 다 날아가게 된다.
 그래서 우리는 [**GitHub**](https://github.com) 같은 remote storage(원격 저장소)를 이용해 백업을 해야한다.
 
-![image](https://raw.githubusercontent.com/heum2/image-archive/main/loginGitHub.png)
+![image](/images/loginGitHub.png)
 
 아직, [**GitHub**](https://github.com)에 가입 하지 않았다면 회원가입을 하자.
 
 ---
 
-![image](https://raw.githubusercontent.com/heum2/image-archive/main/setGitHub.png)
+![image](/images/setGitHub.png)
 
 **\+** 를 누르게 되면 **New repository**가 보인다. 프로젝트를 올릴 때 자주 가게 될 녀석이다.
 
 ---
 
-![image](https://raw.githubusercontent.com/heum2/image-archive/main/createGitHub.png)
+![image](/images/createGitHub.png)
 
 **Repository name**에 진행중인 프로젝트 이름을 적어주고, 프로젝트의 성향에 따라 Public, Private을 설정하면 될 것 같다. README는 주로 프로젝트 설명서이다. 마크다운 형식으로 작성 할 수 있다고 하는데 아직 작성해본 적은 없다.
 **Repository name**을 TestRepository라고 적고 생성해보았다.
 
 ---
 
-![image](https://raw.githubusercontent.com/heum2/image-archive/main/testGitHub.png)
+![image](/images/testGitHub.png)
 
 이제 local storage에 remote storage 경로를 지정해주면 연결은 끝이 난다.
 
@@ -177,7 +177,7 @@ $ git log --oneline --all --graph
 `git remote add <remote name><HTTPS or SSH>` remote storage에 연결해주기 위한 명령어이다.
 `<remote name>`는 remote storage의 이름을 적는데, 대부분 origin을 많이 쓴다고 한다.
 
-![image](https://raw.githubusercontent.com/heum2/image-archive/main/HttpsOrSshGitHub.png)
+![image](/images/HttpsOrSshGitHub.png)
 
 `<HTTPS or SSH>`는 적혀져 있으니 HTTPS로 할 것인지 SSH로 할 것인지 정해주면 된다.
 `git merge` 했던 프로젝트와 연결해보겠다.
@@ -209,7 +209,7 @@ and the repository exists.
 
 진행하다보면 이런 창이 나올 수도 있다. SSH Key가 나의 계정에 등록되지 않았기에 발생하는 Permission denied이다. 당황하지 말고, 내 계정의 **Settings**을 들어가보자.
 
-![image](https://raw.githubusercontent.com/heum2/image-archive/main/sshSetGitHub.png)
+![image](/images/sshSetGitHub.png)
 
 들어가게 되면 이런 창이 나오는데, 혹시 SSH Key를 어디서 확인하는지 모르는 경우 [여기](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)를 클릭해 진행하면 될 것이다.
 
@@ -234,7 +234,7 @@ ecae6e2 working -m1
 aec874d working 1
 ```
 
-![test](https://raw.githubusercontent.com/heum2/image-archive/main/pushGitHub.png)
+![test](/images/pushGitHub.png)
 
 SSH KEY 등록이 끝나고 push를 하면 remote storage에 파일이 업로드 된 모습과, `git log`에서는 **origin/master**가 생긴 것을 볼 수 있다.
 
