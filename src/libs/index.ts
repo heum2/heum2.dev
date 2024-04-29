@@ -1,1 +1,0 @@
-export { parseToc } from "./toc";

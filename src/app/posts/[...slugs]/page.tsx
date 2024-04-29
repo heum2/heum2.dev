@@ -7,8 +7,6 @@ import Utterances from "src/components/comments";
 import { Tag } from "src/components/tags";
 import { MobileTocBanner, PostFooter, TocBanner } from "src/components/layout";
 
-import { parseToc } from "src/libs";
-
 export const generateStaticParams = async () =>
   allPosts.map(post => ({ slug: post.slug }));
 
@@ -51,7 +49,7 @@ const PostLayout = ({ params }: { params: { slugs: string[] } }) => {
       <div className="m-auto max-w-4xl w-full">
         <article className="bg-white dark:bg-zinc-700 rounded-3xl py-12 px-4 md:px-8 shadow-md">
           <div className="mb-8 text-center">
-            <h1 className="break-keep text-3xl font-extrabold tracking-tight sm:text-4xl mx-auto mb-2 max-w-6xl text-center">
+            <h1 className="break-keep text-3xl font-extrabold tracking-tight mx-auto mb-2 max-w-6xl text-center">
               {post.title}
             </h1>
             {post.series && (
@@ -73,7 +71,7 @@ const PostLayout = ({ params }: { params: { slugs: string[] } }) => {
           </div>
 
           <div className="block xl:hidden">
-            <MobileTocBanner value={parseToc(post.body.raw)} />
+            <MobileTocBanner value={post.toc} />
           </div>
 
           <div
@@ -100,7 +98,7 @@ const PostLayout = ({ params }: { params: { slugs: string[] } }) => {
 
       <div className="ml-auto">
         <div className="sticky top-[81px] hidden xl:block min-w-[240px] max-w-[260px] self-start">
-          <TocBanner value={parseToc(post.body.raw)} />
+          <TocBanner value={post.toc} />
         </div>
       </div>
     </div>

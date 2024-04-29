@@ -1,85 +1,48 @@
 "use client";
 
-import React, { Fragment } from "react";
+import React from "react";
 import Link from "next/link";
 
-import { useScroll } from "src/hooks";
-import { MdKeyboardArrowRight } from "react-icons/md";
-import { AiOutlineUnorderedList } from "react-icons/ai";
-
 type Props = {
-  value: Section[];
+  value: Toc[];
   className?: string;
 };
 
 export function MobileTocBanner({ value, className }: Props): JSX.Element {
-  const { currentSectionSlug } = useScroll(value);
-
-  const isSubSectionActive = (subSection: SubSection) => {
-    return subSection.slug === currentSectionSlug;
-  };
-
-  const isSectionActive = (section: Section) => {
-    return (
-      section.slug === currentSectionSlug ||
-      section.subSections.some(v => v.slug === currentSectionSlug)
-    );
-  };
-
   if (value.length < 1) {
     return <></>;
   }
 
   return (
-    <div
+    <details
+      open
       className={`max-h-[300px] overflow-y-scroll rounded-md mb-5 shadow-md transition-all ${
         className ?? ""
       }`}
     >
-      <div className="sticky top-0 flex items-center p-4 pr-2 bg-zinc-100 dark:bg-black">
+      <summary className="sticky top-0 flex items-center p-4 pr-2 bg-zinc-100 dark:bg-black">
         <h4 className="font-bold flex items-center gap-2">
-          <AiOutlineUnorderedList />
-          목차
+          <strong>목차</strong>
         </h4>
-      </div>
+      </summary>
       <div className="bg-white p-4 pr-2 dark:bg-[#2b2b2b]">
         <ul
           id="toc-content"
           className="flex flex-col items-start justify-start text-sm"
         >
-          {value.map(section => (
-            <Fragment key={section.slug}>
-              <li>
-                <a
-                  href={`#${section.slug}`}
-                  className={`group block py-1 ${section.subSections && ""} ${
-                    isSectionActive(section)
-                      ? "bg-gradient-to-r from-gray-500 to-sky-500 bg-clip-text font-extrabold text-transparent dark:from-cyan-300 dark:to-sky-600"
-                      : "text-red hover:text-gray-500 hover:drop-shadow-base-bold dark:hover:drop-shadow-base"
-                  } `}
-                >
-                  {section.text}
-                </a>
-              </li>
-              {section.subSections.map(subSection => (
-                <li key={subSection.slug} className="ml-4">
-                  <Link
-                    href={`#${subSection.slug}`}
-                    className={`group flex items-center py-1 ${
-                      isSubSectionActive(subSection)
-                        ? "bg-gradient-to-r from-gray-500 to-sky-500 bg-clip-text font-extrabold text-transparent dark:from-cyan-300 dark:to-sky-600"
-                        : "text-red hover:text-gray-500 hover:drop-shadow-base-bold dark:hover:drop-shadow-base"
-                    }`}
-                  >
-                    <MdKeyboardArrowRight className="mr-1 overflow-visible text-black" />
-                    {subSection.text}
-                  </Link>
-                </li>
-              ))}
-            </Fragment>
+          {value.map(toc => (
+            <li key={`#${toc.slug}`} className="py-1">
+              <Link
+                href={`#${toc.slug}`}
+                data-level={toc.level}
+                className="flex items-center data-[level=two]:text-sm data-[level=three]:pl-4 hover:text-gray-500 hover:drop-shadow-base-bold dark:hover:drop-shadow-base"
+              >
+                {toc.text}
+              </Link>
+            </li>
           ))}
         </ul>
       </div>
-    </div>
+    </details>
   );
 }

@@ -8,6 +8,7 @@ import rehypePrism from "rehype-prism-plus";
 import { rehypeAccessibleEmojis } from "rehype-accessible-emojis";
 import remarkBreaks from "remark-breaks";
 import rehypeExternalLinks from "rehype-external-links";
+import GithubSlugger from "github-slugger";
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
@@ -29,6 +30,27 @@ export const Post = defineDocumentType(() => ({
     readingTime: {
       type: "string",
       resolve: doc => Math.ceil(readingTime(doc.body.raw).minutes),
+    },
+    toc: {
+      type: "json",
+      resolve: async doc => {
+        const regulrExp = /\n(?<flag>#{2,6})\s+(?<content>.+)/g;
+        const slgger = new GithubSlugger();
+        const headings = Array.from(doc.body.raw.matchAll(regulrExp)).map(
+          ({ groups }) => {
+            const flag = groups?.flag;
+            const content = groups?.content;
+
+            return {
+              level: flag?.length === 2 ? "two" : "three",
+              text: content,
+              slug: content ? slgger.slug(content) : undefined,
+            };
+          }
+        );
+
+        return headings;
+      },
     },
   },
 }));

@@ -2,10 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-export const useScroll = (tableOfContents: Section[]) => {
-  const [currentSectionSlug, setCurrentSectionSlug] = useState<
-    string | undefined
-  >();
+export const useScroll = (tableOfContents: Toc[]) => {
+  const [currentTocSlug, setCurrentTocSlug] = useState<string | undefined>();
 
   useEffect(() => {
     if (tableOfContents.length === 0) return;
@@ -30,13 +28,13 @@ export const useScroll = (tableOfContents: Section[]) => {
       const NAV_TOP = 81;
       const top = window.scrollY + scrollMt - NAV_TOP + 1;
 
-      let current: typeof currentSectionSlug = undefined;
+      let current: typeof currentTocSlug = undefined;
       for (let i = 0; i < headings.length; i++) {
         if (top >= headings[i].top) {
           current = headings[i].id;
         }
       }
-      setCurrentSectionSlug(current);
+      setCurrentTocSlug(current);
     }
 
     onResize();
@@ -55,5 +53,5 @@ export const useScroll = (tableOfContents: Section[]) => {
     };
   }, [tableOfContents]);
 
-  return { tableOfContents, currentSectionSlug };
+  return { tableOfContents, currentTocSlug };
 };

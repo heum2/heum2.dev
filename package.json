@@ -23,6 +23,7 @@
     "eslint-config-next": "13.4.5",
     "feed": "^4.2.2",
     "framer-motion": "^10.12.17",
+    "github-slugger": "^2.0.0",
     "next": "13.4.5",
     "next-contentlayer": "^0.3.3",
     "next-themes": "^0.2.1",
