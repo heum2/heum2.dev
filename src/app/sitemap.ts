@@ -7,14 +7,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const posts = allPosts.map(post => ({
     url: `${siteUrl}/posts${post.slug}`,
-    lastModified: post.date.split("T")[0],
+    lastModified: new Date(post.date),
     changeFrequency: "daily",
     priority: 0.5,
   }));
 
   const routes = config.menus.map(route => ({
     url: `${siteUrl}${route.path}`,
-    lastModified: new Date().toISOString().split("T")[0],
+    lastModified: new Date(),
     changeFrequency: "daily",
     priority: 0.5,
   }));
