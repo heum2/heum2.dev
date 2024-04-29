@@ -18,15 +18,15 @@ module.exports = {
             "h2,h3,h4": {
               "scroll-margin-top": "3.75rem",
             },
-            // "hr, thead, tbody tr": { borderColor: theme("colors.neutral.300") },
+            "hr, thead, tbody tr": { borderColor: theme("colors.neutral.300") },
           },
         },
         invert: {
           css: {
-            blockquote: {
-              color: "red",
-            },
+            blockquote: {},
             "--tw-prose-hr": theme("colors.white[500]"),
+            "--tw-prose-quote-borders": theme("colors.white[500]"),
+            "--tw-prose-bullets": theme("colors.white[500]"),
           },
         },
       }),
