@@ -4,6 +4,7 @@ import { allPosts } from "contentlayer/generated";
 import { ASide, HomePosts } from "src/components/layout";
 import { ContractCard, ProfileCard } from "src/components/cards";
 import { TagList } from "src/components/tags";
+import Link from "next/link";
 
 function Home() {
   const { tags } = useMemo(
@@ -17,7 +18,9 @@ function Home() {
     <div className="block md:grid grid-cols-12 gap-6">
       <ASide className="col-span-2">
         <div>
-          <div className="p-1 mb-3 font-bold">🏷️ Tags</div>
+          <Link href="/tags">
+            <div className="p-1 mb-3 font-bold">🏷️ Tags</div>
+          </Link>
           <TagList className="lg:block" data={tags} />
         </div>
       </ASide>

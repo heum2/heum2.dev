@@ -1,34 +1,29 @@
+"use client";
+
 import React from "react";
 import { allPosts } from "contentlayer/generated";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-import { ASide, HomePosts } from "src/components/layout";
-import { TagList } from "src/components/tags";
-import { ContractCard, ProfileCard } from "src/components/cards";
-
-type Props = {};
-
-function Posts({}: Props): JSX.Element {
+function Posts() {
+  const pathname = usePathname();
   const tags = Array.from(new Set(allPosts.flatMap(item => item.tags)));
 
   return (
-    <div className="block md:grid grid-cols-12 gap-6">
-      <ASide className="col-span-2">
-        <div>
-          <div className="p-1 mb-3 font-bold">🏷️ Tags</div>
-          <TagList className="lg:block" data={tags} />
-        </div>
-      </ASide>
-
-      <HomePosts />
-
-      <ASide className="col-span-3">
-        <ProfileCard />
-        <ContractCard />
-        <div className="flex justify-center cursor-default">
-          <p className="text-gray-700 text-sm mt-3">© heum2 2023</p>
-        </div>
-      </ASide>
-    </div>
+    <section>
+      <h1 className="text-2xl font-bold tracking-tight md:text-4xl">
+        Tags <span className="ml-2 text-sm">({tags.length})</span>
+      </h1>
+      <div className="mt-4 flex flex-wrap gap-2">
+        {tags.map(tag => (
+          <Link key={tag} href={`${pathname}/${tag}`}>
+            <span className="rounded-lg px-2 py-0.5 transition-colors bg-gray-300 dark:bg-gray-500 hover:text-primary hover:bg-gray-200 font-normal">
+              {tag}
+            </span>
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }
 
