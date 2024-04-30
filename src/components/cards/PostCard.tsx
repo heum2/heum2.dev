@@ -9,12 +9,12 @@ import Link from "next/link";
 
 export function PostCard(post: Post) {
   return (
-    <motion.article
-      whileHover={{ scale: 1.03 }}
-      whileTap={{ scale: 0.98 }}
-      className="relative overflow-hidden mb-6 md:mb-8 rounded-2xl bg-white dark:bg-zinc-700 hover:shadow-lg transition-shadow cursor-pointer"
-    >
-      <Link href={`/posts/${post.slug}`}>
+    <Link href={`/posts/${post.slug}`}>
+      <motion.article
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.98 }}
+        className="relative overflow-hidden mb-6 md:mb-8 rounded-2xl bg-white dark:bg-zinc-700 hover:shadow-lg transition-shadow cursor-pointer"
+      >
         {post.thumbnailUrl && (
           <div className="relative w-full pb-[66%] lg:pb-[50%] bg-gray-200 dark:bg-zinc-700">
             <Image
@@ -26,10 +26,8 @@ export function PostCard(post: Post) {
             />
           </div>
         )}
-      </Link>
 
-      <div className="p-4">
-        <Link href={`/posts/${post.slug}`}>
+        <div className="p-4">
           <div className="flex items-start mb-2">
             <h2 className="text-lg md:text-xl font-medium  text-black dark:text-gray-100">
               {post.title}
@@ -55,20 +53,19 @@ export function PostCard(post: Post) {
               {post.description}
             </p>
           </div>
-        </Link>
 
-        <ul className="flex gap-2">
-          {post.tags.map(item => (
-            <li key={item}>
-              <Link href={`/tags/${item}`}>
-                <span className="text-xs text-gray-600 font-normal rounded-lg bg-gray-200 px-2 py-1 cursor-pointer hover:bg-gray-300">
-                  {item}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </motion.article>
+          <ul className="flex gap-2">
+            {post.tags.map(item => (
+              <li
+                key={item}
+                className="text-xs text-gray-600 font-normal rounded-lg bg-gray-200 px-2 py-1"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </motion.article>
+    </Link>
   );
 }

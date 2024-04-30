@@ -34,10 +34,6 @@ export function TocBanner({ value, className }: Props): JSX.Element {
     document.querySelector("#comments")?.scrollIntoView();
   };
 
-  if (value.length < 1) {
-    return <></>;
-  }
-
   return (
     <div
       className={`overflow-hidden rounded-3xl shadow-md transition-all ${
