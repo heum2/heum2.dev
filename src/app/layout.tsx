@@ -61,9 +61,9 @@ export default function RootLayout({
           "min-h-screen bg-slate-100 dark:bg-black transition-colors duration-200")
         }
       >
+        <Providers>{children}</Providers>
         <Analytics />
         <SpeedInsights />
-        <Providers>{children}</Providers>
       </body>
     </html>
   );
