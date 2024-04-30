@@ -8,16 +8,16 @@ export function MobileProfileCard(): JSX.Element {
     <div className="block lg:hidden">
       <div className="p-1 mb-3 font-bold text-lg">💻 Profile</div>
       <div className="p-3 rounded-2xl bg-white dark:bg-zinc-700 mb-4">
-        <div className="flex items-center gap-2  md:gap-6">
-          <div className="relative w-28 h-28">
+        <div className="flex items-center gap-4 md:gap-6">
+          <div className="relative">
             <Image
               priority
               src={config.profile.image}
               alt="profile"
-              fill
+              width={112}
+              height={112}
               className="object-cover rounded-2xl"
               draggable={false}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
           <div className="h-fit">

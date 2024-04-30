@@ -1,6 +1,7 @@
 import { compareDesc, format, parseISO } from "date-fns";
 import { allPosts } from "contentlayer/generated";
-import { AiOutlineCalendar, AiOutlineClockCircle } from "react-icons/ai";
+import { AiOutlineCalendar } from "@react-icons/all-files/ai/AiOutlineCalendar";
+import { AiOutlineClockCircle } from "@react-icons/all-files/ai/AiOutlineClockCircle";
 import { notFound } from "next/navigation";
 
 import Utterances from "src/components/comments";

@@ -1,5 +1,7 @@
 import { Noto_Sans_KR } from "next/font/google";
 import { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { config } from "config";
 import { Providers } from "./providers";
@@ -59,6 +61,8 @@ export default function RootLayout({
           "min-h-screen bg-slate-100 dark:bg-black transition-colors duration-200")
         }
       >
+        <Analytics />
+        <SpeedInsights />
         <Providers>{children}</Providers>
       </body>
     </html>

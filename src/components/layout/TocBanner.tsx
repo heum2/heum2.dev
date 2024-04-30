@@ -3,8 +3,9 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { HiArrowUturnUp } from "react-icons/hi2";
-import { BsChatRightText, BsShare } from "react-icons/bs";
+import { HiOutlineArrowUp } from "@react-icons/all-files/hi/HiOutlineArrowUp";
+import { BiChat } from "@react-icons/all-files/bi/BiChat";
+import { BiShareAlt } from "@react-icons/all-files/bi/BiShareAlt";
 import { toast } from "react-hot-toast";
 
 import { useScroll } from "src/hooks";
@@ -75,7 +76,7 @@ export function TocBanner({ value, className }: Props): JSX.Element {
           aria-label="share"
           onClick={handleCopyLink}
         >
-          <BsShare />
+          <BiShareAlt />
         </motion.button>
 
         <motion.button
@@ -86,7 +87,7 @@ export function TocBanner({ value, className }: Props): JSX.Element {
           aria-label="scroll-up"
           onClick={handleScrollTop}
         >
-          <HiArrowUturnUp />
+          <HiOutlineArrowUp />
         </motion.button>
 
         <motion.button
@@ -97,7 +98,7 @@ export function TocBanner({ value, className }: Props): JSX.Element {
           aria-label="scroll-down"
           onClick={handleScrollComments}
         >
-          <BsChatRightText />
+          <BiChat />
         </motion.button>
       </div>
     </div>

@@ -1,7 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { Post } from "contentlayer/generated";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { MdKeyboardArrowLeft } from "@react-icons/all-files/md/MdKeyboardArrowLeft";
+import { MdKeyboardArrowRight } from "@react-icons/all-files/md/MdKeyboardArrowRight";
 import Image from "next/image";
 import { config } from "config";
 
@@ -16,15 +17,15 @@ export function PostFooter({ prevPost, nextPost }: Props): JSX.Element {
       <div className="flex w-full items-center justify-center mt-3 sm:mt-0">
         <div className="flex items-center gap-4 sm:gap-6 sm:p-12">
           <div className="w-16 h-16 md:h-24 md:w-24 select-none overflow-hidden rounded-full">
-            <div className="relative w-full after:content-[''] after:block after:pb-[100%]">
+            <div className="relative">
               <Image
                 priority
                 className="object-cover"
                 src={config.profile.image}
                 alt="profile"
-                fill
+                width={96}
+                height={96}
                 draggable={false}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
           </div>

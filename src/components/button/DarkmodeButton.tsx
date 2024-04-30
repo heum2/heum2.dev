@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
-import { BsSunFill, BsMoonFill } from "react-icons/bs";
+import { BsSun } from "@react-icons/all-files/bs/BsSun";
+import { BsMoon } from "@react-icons/all-files/bs/BsMoon";
 
 export function DarkmodeButton(): JSX.Element {
   const [loaded, setLoaded] = useState(false);
@@ -33,9 +34,9 @@ export function DarkmodeButton(): JSX.Element {
         className="bg-current p-2 rounded-full text-gray-500 dark:text-gray-400"
       >
         {theme === "light" ? (
-          <BsMoonFill className="w-5 h-5" fill="rgb(254, 240, 138)" />
+          <BsMoon className="w-5 h-5" fill="rgb(254, 240, 138)" />
         ) : (
-          <BsSunFill className="w-5 h-5" fill="rgb(253, 224, 71)" />
+          <BsSun className="w-5 h-5" fill="rgb(253, 224, 71)" />
         )}
       </motion.button>
     </div>

@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { allPosts } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
-import { MdExpandMore } from "react-icons/md";
+import { MdExpandMore } from "@react-icons/all-files/md/MdExpandMore";
 
 import { PostCard } from "../cards";
 import { useQuery } from "src/hooks";

@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import { Post } from "contentlayer/generated";
 import { format, parseISO } from "date-fns";
-import { AiOutlineCalendar, AiOutlineClockCircle } from "react-icons/ai";
+import { AiOutlineCalendar } from "@react-icons/all-files/ai/AiOutlineCalendar";
+import { AiOutlineClockCircle } from "@react-icons/all-files/ai/AiOutlineClockCircle";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,6 +23,7 @@ export function PostCard(post: Post) {
               src={`/images/${post.thumbnailUrl}`}
               alt={post.title}
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               draggable={false}
             />
           </div>

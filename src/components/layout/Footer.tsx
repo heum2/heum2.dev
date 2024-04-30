@@ -1,12 +1,10 @@
 import { config } from "config";
 import React from "react";
-import {
-  AiFillLinkedin,
-  AiOutlineGithub,
-  AiOutlineInstagram,
-  AiOutlineMail,
-  AiOutlineTwitter,
-} from "react-icons/ai";
+import { AiOutlineInstagram } from "@react-icons/all-files/ai/AiOutlineInstagram";
+import { AiOutlineGithub } from "@react-icons/all-files/ai/AiOutlineGithub";
+import { AiOutlineMail } from "@react-icons/all-files/ai/AiOutlineMail";
+import { AiFillLinkedin } from "@react-icons/all-files/ai/AiFillLinkedin";
+import { AiOutlineTwitter } from "@react-icons/all-files/ai/AiOutlineTwitter";
 
 export function Footer(): JSX.Element {
   return (

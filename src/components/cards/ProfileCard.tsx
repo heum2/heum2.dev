@@ -10,12 +10,12 @@ export function ProfileCard(): JSX.Element {
       <div className="rounded-2xl bg-white dark:bg-zinc-700 w-full md:p-4 lg:p-4 mb-9">
         <div className="relative">
           <Image
+            priority
             className="object-cover rounded-2xl"
             src={config.profile.image}
             alt="profile"
             width={230}
             height={230}
-            priority
             draggable={false}
           />
         </div>
