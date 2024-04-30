@@ -9,7 +9,7 @@ import Link from "next/link";
 function Home() {
   const { tags } = useMemo(
     () => ({
-      tags: Array.from(new Set(allPosts.flatMap(item => item.tags))),
+      tags: Array.from(new Set(allPosts.flatMap(item => item.tags))).sort(),
     }),
     []
   );
