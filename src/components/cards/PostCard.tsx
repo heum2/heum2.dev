@@ -29,7 +29,7 @@ export function PostCard(post: Post) {
 
         <div className="p-4">
           <div className="flex items-start mb-2">
-            <h2 className="text-lg md:text-xl font-medium  text-black dark:text-gray-100">
+            <h2 className="text-lg md:text-xl font-medium break-keep text-black dark:text-gray-100">
               {post.title}
             </h2>
             <span className="bg-sky-200 ml-auto opacity-90 px-2 py-1 text-sm rounded-lg w-fit dark:bg-sky-400 whitespace-nowrap">
@@ -54,7 +54,7 @@ export function PostCard(post: Post) {
             </p>
           </div>
 
-          <ul className="flex gap-2">
+          <ul className="flex gap-2 flex-wrap">
             {post.tags.map(item => (
               <li
                 key={item}

@@ -21,7 +21,7 @@ function Home() {
           <Link href="/tags">
             <div className="p-1 mb-3 font-bold">🏷️ Tags</div>
           </Link>
-          <TagList className="lg:block" data={tags} />
+          <TagList className="lg:flex-col" data={tags} />
         </div>
       </ASide>
 

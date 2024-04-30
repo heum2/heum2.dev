@@ -23,9 +23,14 @@ export const generateMetadata = ({
   return { title: post?.title, description: post?.description };
 };
 
-const PostLayout = ({ params }: { params: { slugs: string[] } }) => {
-  const { slugs } = params;
-  const slug = `/${[...slugs].join("/")}`;
+type Props = {
+  params: {
+    slugs: string[];
+  };
+};
+
+const PostLayout = ({ params }: Props) => {
+  const slug = `/${[...params.slugs].join("/")}`;
   const post = allPosts.find(post => post.slug === slug);
   const postIndex = allPosts.findIndex(post => post.slug === slug);
 
