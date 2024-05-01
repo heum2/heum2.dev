@@ -39,9 +39,7 @@ _고민은 테스트 시간만 늦출 뿐.._
 yarn add @ant-design/cssinjs
 ```
 
-`pages/_document.tsx`
-
-```tsx
+```tsx:pages/_document.tsx
 import React from "react";
 import { createCache, extractStyle, StyleProvider } from "@ant-design/cssinjs";
 import Document, { Head, Html, Main, NextScript } from "next/document";
@@ -98,9 +96,7 @@ Nextjs 문서에서는 `_document` 폴더에서 `getInitialProps` 하는 것을 
 
 `transpilePackages`를 이용해서 문제를 해결했다고 한다. 그래서 한번 따라해봤다.
 
-```jsx
-// next.config.js
-
+```jsx:next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,

@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export function PostCard(post: Post) {
   return (
-    <Link href={`/posts/${post.slug}`}>
+    <Link href={`/posts${post.slug}`}>
       <motion.article
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.98 }}
