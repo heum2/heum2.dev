@@ -16,7 +16,7 @@ const feed = new Feed({
   id: config.link,
   link: config.link,
   language: "ko",
-  image: `${config.link}/images/base.jpg`,
+  image: `${config.link}/images/profile.jpg`,
   favicon: `${config.link}/favicon.ico`,
   copyright: `All rights reserved since ${config.since}, ${master.name}`,
   generator: "generate-rss",
@@ -31,13 +31,15 @@ PostJson.forEach(post => {
   feed.addItem({
     title: post.title,
     id: post.slug,
-    link: `${config.link}${post.slug}`,
+    link: `${config.link}/posts${post.slug}`,
     description: post.description,
     content: post.body.raw,
     author: [master],
     contributor: [master],
     date: new Date(post.date),
-    // image: post.image,
+    image: post.thumbnailUrl
+      ? `${config.link}/images/${post.thumbnailUrl}`
+      : undefined,
     category: post.tags.map(tag => ({ name: tag })),
   });
 });

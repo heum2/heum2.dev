@@ -9,7 +9,6 @@
     "postbuild": "npm run rss",
     "start": "next start",
     "lint": "next lint",
-    "sitemap": "ts-node --project tsconfig.node.json ./scripts/generate-sitemap.ts",
     "rss": "ts-node --project tsconfig.node.json ./scripts/generate-rss.ts"
   },
   "dependencies": {
