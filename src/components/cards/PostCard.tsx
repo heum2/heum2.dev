@@ -42,7 +42,7 @@ export function PostCard(post: Post) {
           <div className="flex items-center gap-2 mb-2 text-xs text-gray-600 dark:text-gray-100">
             <time className="flex items-center" dateTime={post.date}>
               <AiOutlineCalendar className="mr-1" />
-              {format(parseISO(post.date), "yy.MM.d")}
+              {format(parseISO(post.date), "yy.MM.dd")}
             </time>
             <time className="flex items-center" dateTime={post.readingTime}>
               <AiOutlineClockCircle className="mr-1" />
