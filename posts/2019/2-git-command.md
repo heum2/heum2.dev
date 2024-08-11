@@ -1,11 +1,12 @@
 ---
-title: "Git 명령어"
-description: "Git 명령어에 대해 자세히 알아보자."
+title: Git 명령어
+description: Git 명령어에 대해 자세히 알아보자.
 tags:
   - Git
 date: 2019-12-12
-series: "Git 공부"
-category: "💻 Dev"
+series: Git 공부
+category: 💻 Dev
+thumbnailUrl: 2019/thumbnail.png
 ---
 
 이번 세미나의 중심 내용은 `git reset`, `git checkout` 명령어와 **HEAD**, **master** 였다.

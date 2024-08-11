@@ -4,9 +4,10 @@ description: 기본 터미널은 너무 칙칙하다. 이번에 PowerShell을 �
 tags:
   - powershell
   - oh-my-posh
+  - windows
 date: 2023-12-14
 category: 💻 Dev
-thumbnailUrl: oh-my-posh.png
+thumbnailUrl: 2023/custom-windows-powershell/thumbnail.png
 ---
 
 기본으로 Windows에 내장되어있는 PowerShell의 디자인은 칙칙해서 내 마음에 들지 않는다.
@@ -91,6 +92,6 @@ oh-my-posh init pwsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/
 
 나는 원격으로 테마를 적용시켰다.
 
-![image](/images/oh-my-posh-done.png)
+![image](/images/2023/custom-windows-powershell/oh-my-posh-done.png)
 
 추가로 vscode에서 혹시 적용이 안되었다면 종료했다가 다시 실행해보면 적용되어 있는 모습을 볼 수 있을 것이다.

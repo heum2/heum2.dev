@@ -19,12 +19,12 @@ export function PostCard(post: Post) {
         {post.thumbnailUrl && (
           <div className="relative w-full pb-[66%] lg:pb-[50%] bg-gray-200 dark:bg-zinc-700">
             <Image
-              className="object-contain"
               src={`/images/${post.thumbnailUrl}`}
               alt={post.title}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               draggable={false}
+              quality={100}
             />
           </div>
         )}

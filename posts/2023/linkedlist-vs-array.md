@@ -5,6 +5,7 @@ tags:
   - 자료구조
   - JavaScript
 date: 2023-08-24
+thumbnailUrl: 2023/linkedlist-vs-array/thumbnail.png
 category: 💻 Dev
 ---
 

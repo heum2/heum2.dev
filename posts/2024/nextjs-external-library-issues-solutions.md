@@ -17,7 +17,7 @@ category: 💻 Dev
 `src/client`의 Ant Design 버전은 **v5.13.2** 버전을 사용하고, `src/admin`의 Ant Design 버전은 **v5.16.1** 버전을 사용 중이다. 버전이 업데이트 되면서 이전 버전의 호환이 제대로 이뤄지지 않은 것으로 추측된다.
 우선 **v5.13.2** 버전으로 맞춰서 테스트를 진행해보았다.
 
-![image](/images/cannot-use-import-in-nextjs.png)
+![image](/images/2024/nextjs-external-library-issues-solutions/cannot-use-import-in-nextjs.png)
 
 똑같은 오류가 발생했다..
 

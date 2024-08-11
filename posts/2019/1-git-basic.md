@@ -1,11 +1,12 @@
 ---
-title: "Git의 기초"
-description: "Git을 한번 사용해보자."
+title: Git의 기초
+description: Git을 한번 사용해보자.
 tags:
   - Git
 date: 2019-12-11
-series: "Git 공부"
-category: "💻 Dev"
+series: Git 공부
+category: 💻 Dev
+thumbnailUrl: 2019/thumbnail.png
 ---
 
 Git을 사용해 본 경험은 로컬 저장소에 진행하고 있는 프로젝트를 저장시키고, `push` 라는 명령어를 사용해 GitHub에 올리는게 전부였다.
