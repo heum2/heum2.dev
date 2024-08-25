@@ -10,7 +10,8 @@ export const config = {
     github: "heum2",
     instagram: "",
     twitter: "",
-    about: "https://heum2.notion.site/77303a5be4d3443fb12c8984b4778f43?pvs=4",
+    about:
+      "https://heum2.notion.site/Frontend-Engineer-e49e4aab5dcd4d21a1c3d0d91184f68e?pvs=4",
   },
   // blog setting (required)
   blog: {
