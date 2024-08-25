@@ -5,7 +5,7 @@ export const config = {
     image: "/images/profile.jpg", // If you want to create your own notion avatar, check out https://notion-avatar.vercel.app
     role: "Frontend Developer",
     bio: "Coffee is my power ☕️",
-    email: "jwh6295@gmail.com",
+    email: "heum2.dev@gmail.com",
     linkedin: "eunheum-jo-b9459a1b4",
     github: "heum2",
     instagram: "",
