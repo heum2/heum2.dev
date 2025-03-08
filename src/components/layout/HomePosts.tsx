@@ -100,8 +100,8 @@ export function HomePosts(): JSX.Element {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
       >
-        {posts.map(post => (
-          <PostCard key={post.slug} {...post} />
+        {posts.map((post, index) => (
+          <PostCard key={post.slug} index={index} {...post} />
         ))}
       </motion.div>
     </div>

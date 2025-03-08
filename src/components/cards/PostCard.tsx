@@ -8,9 +8,15 @@ import { AiOutlineClockCircle } from "@react-icons/all-files/ai/AiOutlineClockCi
 import Image from "next/image";
 import Link from "next/link";
 
-export function PostCard(post: Post) {
+interface PostCardProps extends Post {
+  index?: number;
+}
+
+export function PostCard({ index = 0, ...post }: PostCardProps) {
+  const isFirstPost = index === 0;
+
   return (
-    <Link href={`/posts${post.slug}`}>
+    <Link href={`/posts${post.slug}`} prefetch={isFirstPost}>
       <motion.article
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.98 }}
@@ -25,6 +31,7 @@ export function PostCard(post: Post) {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               draggable={false}
               quality={100}
+              priority={true}
             />
           </div>
         )}
