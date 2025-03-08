@@ -23,7 +23,7 @@ export function PostCard({ index = 0, ...post }: PostCardProps) {
         className="relative overflow-hidden mb-6 md:mb-8 rounded-2xl bg-white dark:bg-zinc-700 hover:shadow-lg transition-shadow cursor-pointer"
       >
         {post.thumbnailUrl && (
-          <div className="relative w-full pb-[66%] lg:pb-[50%] bg-gray-200 dark:bg-zinc-700">
+          <div className="relative w-full pb-[66%] lg:pb-[50%] bg-gray-200 dark:bg-zinc-700 aspect-video">
             <Image
               src={`/images/${post.thumbnailUrl}`}
               alt={post.title}
@@ -32,6 +32,7 @@ export function PostCard({ index = 0, ...post }: PostCardProps) {
               draggable={false}
               quality={100}
               priority={true}
+              className="object-cover block w-full h-full"
             />
           </div>
         )}
