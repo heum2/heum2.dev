@@ -31,9 +31,14 @@ export const generateMetadata = ({
     };
   }
 
-  const ogImage = post.thumbnailUrl
-    ? `${config.link}/images/${post.thumbnailUrl}`
-    : `${config.link}/images/profile.jpg`;
+  // 절대 URL로 OG 이미지 경로 설정 및 URL 인코딩
+  const ogImagePath = post.thumbnailUrl
+    ? `/images/${post.thumbnailUrl}`
+    : `/images/profile.jpg`;
+
+  // URL 인코딩 적용 (공백이나 특수문자가 있을 경우 대비)
+  const encodedImagePath = encodeURI(ogImagePath);
+  const ogImageUrl = `${config.link}${encodedImagePath}`;
 
   return {
     title: post.title,
@@ -46,7 +51,7 @@ export const generateMetadata = ({
       url: `${config.link}/posts${post.slug}`,
       images: [
         {
-          url: ogImage,
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: post.title,
@@ -58,7 +63,7 @@ export const generateMetadata = ({
       card: "summary_large_image",
       title: post.title,
       description: post.description,
-      images: [ogImage],
+      images: [ogImageUrl],
     },
     alternates: {
       canonical: `${config.link}/posts${post.slug}`,
@@ -118,7 +123,7 @@ const PostLayout = ({ params }: Props) => {
     },
     keywords: post.tags.join(", "),
     image: post.thumbnailUrl
-      ? `${config.link}/images/${post.thumbnailUrl}`
+      ? `${config.link}${encodeURI(`/images/${post.thumbnailUrl}`)}`
       : `${config.link}/images/profile.jpg`,
   };
 

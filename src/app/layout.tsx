@@ -33,7 +33,14 @@ export const metadata: Metadata = {
     url: config.link,
     siteName: config.blog.title,
     locale: "ko_KR",
-    images: "https://heum2.dev/images/profile.jpg",
+    images: [
+      {
+        url: `${config.link}/images/profile.jpg`,
+        width: 1200,
+        height: 630,
+        alt: config.blog.title,
+      },
+    ],
   },
   alternates: {
     canonical: config.link,
