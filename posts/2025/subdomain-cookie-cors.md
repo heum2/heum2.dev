@@ -14,8 +14,6 @@ thumbnailUrl: 2025/subdomain-cookie-cors/thumbnail.png
 category: 💻 Dev
 ---
 
-# 서브도메인 간 쿠키 공유와 CORS 문제 해결하기
-
 웹 애플리케이션을 개발하면서 종종 **쿠키 공유**와 **CORS** 문제를 겪는다. 이 글에서는 아래 내용을 다룬다.
 
 - 왜 서브도메인 간 쿠키 공유는 가능한지

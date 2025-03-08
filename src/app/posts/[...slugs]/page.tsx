@@ -154,6 +154,20 @@ const PostLayout = ({ params }: Props) => {
               <hr className="border-1 w-full transition-all mt-4" />
             </div>
 
+            {post.thumbnailUrl && (
+              <div className="mb-8 flex justify-center">
+                <div className="relative w-full max-w-3xl h-[300px] md:h-[400px] rounded-lg overflow-hidden">
+                  <Image
+                    src={`/images/${post.thumbnailUrl}`}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              </div>
+            )}
+
             <div className="block xl:hidden">
               <MobileTocBanner value={post.toc} />
             </div>
