@@ -1,15 +1,58 @@
-import { Noto_Sans_KR } from "next/font/google";
 import { Metadata } from "next";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { config } from "config";
-import { Providers } from "./providers";
+import { Providers } from "src/app/providers";
 import Scripts from "src/components/scripts";
 
-import "./globals.css";
+import { cn } from "src/utils/style";
 
-const notosans = Noto_Sans_KR({ weight: "700", subsets: ["latin"] });
+import "src/app/globals.css";
+
+const pretendard = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Pretendard-Thin.woff",
+      weight: "100",
+    },
+    {
+      path: "../../public/fonts/Pretendard-ExtraLight.woff",
+      weight: "200",
+    },
+    {
+      path: "../../public/fonts/Pretendard-Light.woff",
+      weight: "300",
+    },
+    {
+      path: "../../public/fonts/Pretendard-Regular.woff",
+      weight: "400",
+    },
+    {
+      path: "../../public/fonts/Pretendard-Medium.woff",
+      weight: "500",
+    },
+    {
+      path: "../../public/fonts/Pretendard-SemiBold.woff",
+      weight: "600",
+    },
+    {
+      path: "../../public/fonts/Pretendard-Bold.woff",
+      weight: "700",
+    },
+    {
+      path: "../../public/fonts/Pretendard-ExtraBold.woff",
+      weight: "800",
+    },
+    {
+      path: "../../public/fonts/Pretendard-Black.woff",
+      weight: "900",
+    },
+  ],
+  display: "swap",
+  variable: "--font-pretendard",
+});
 
 export const metadata: Metadata = {
   title: config.blog.title,
@@ -64,10 +107,10 @@ export default function RootLayout({
         <Scripts />
       </head>
       <body
-        className={
-          (notosans.className,
-          "min-h-screen bg-slate-100 dark:bg-black transition-colors duration-200")
-        }
+        className={cn(
+          "min-h-screen bg-slate-100 dark:bg-black transition-colors duration-200",
+          pretendard.className
+        )}
       >
         <Providers>{children}</Providers>
         <Analytics />
