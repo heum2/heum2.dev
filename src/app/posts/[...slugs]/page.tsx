@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import Script from "next/script";
 import Image from "next/image";
 
-import Utterances from "src/components/comments";
+import Giscus from "src/components/comments";
 import { Tag } from "src/components/tags";
 import { MobileTocBanner, PostFooter, TocBanner } from "src/components/layout";
 import { config } from "config";
@@ -195,7 +195,7 @@ const PostLayout = ({ params }: Props) => {
               nextPost={navigatePosts().nextPost}
             />
 
-            <Utterances />
+            <Giscus />
           </article>
         </div>
 

@@ -1,1 +1,1 @@
-export { default } from "./Utterances";
+export { default } from "src/components/comments/Giscus";
