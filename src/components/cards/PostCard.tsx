@@ -59,7 +59,7 @@ export function PostCard({ index = 0, ...post }: PostCardProps) {
           </div>
 
           <div className="mb-4">
-            <p className="hidden md:block leading-8 text-gray-700 dark:text-gray-300">
+            <p className="hidden md:block leading-8 text-gray-700 dark:text-gray-300 text-sm">
               {post.description}
             </p>
           </div>
