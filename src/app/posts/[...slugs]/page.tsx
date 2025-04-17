@@ -161,13 +161,16 @@ const PostLayout = ({ params }: Props) => {
 
             {post.thumbnailUrl && (
               <div className="mb-8 flex justify-center">
-                <div className="relative w-full max-w-3xl h-[300px] md:h-[400px] rounded-lg overflow-hidden">
+                <div className="relative w-full max-w-3xl h-auto rounded-lg overflow-hidden pt-[56.25%] supports-[aspect-ratio]:aspect-video">
                   <Image
                     src={`/images/${post.thumbnailUrl}`}
                     alt={post.title}
                     fill
                     className="object-cover"
                     priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    placeholder="blur"
+                    blurDataURL={`/images/${post.thumbnailUrl}`}
                   />
                 </div>
               </div>
