@@ -18,7 +18,7 @@ Mac에서는 iterm2와 같이 이쁘게 꾸며 볼 수 있으면 좋겠다는 �
 
 ---
 
-# Oh My Posh
+## Oh My Posh
 
 ![](https://ohmyposh.dev/img/hero.png)
 mac에는 `Oh My zsh`가 있다면 windows에는 `Oh My Posh`가 있다!
@@ -35,7 +35,7 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 
 이렇게 하면 설치가 완료가 된다.
 
-## Nerd Font 설치
+### Nerd Font 설치
 
 다음은 글꼴을 설치해야한다. 공식문서에서는 [**Nerd Font**](https://www.nerdfonts.com/)를 추천해준다.
 링크로 들어가서 확인해보면 다양한 폰트들을 확인할 수 있다.
@@ -51,7 +51,7 @@ oh-my-posh font install
 
 그리고 터미널에 `control` + `,` 키를 눌러주면 설정 창이 활성화 되는데, 프로필에 기본 값을 누른 뒤 모양을 누르면 글꼴이 보인다. 설치한 글꼴을 눌러서 저장을 눌러주면 적용 된 모습을 볼 수 있다.
 
-## 프롬프트 변경
+### 프롬프트 변경
 
 현재 사용하고 있는 쉘이 궁금하다면 다음 명령어를 실행하면 알 수 있다.
 
@@ -82,7 +82,7 @@ oh-my-posh init pwsh | Invoke-Expression
 . $PROFILE
 ```
 
-## 테마 변경
+### 테마 변경
 
 [**테마**](https://ohmyposh.dev/docs/themes)는 해당 링크를 참고해서 원하는 것을 보고 아래와 같은 명령어를 `notepad $PROFILE`에 입력하면 된다.
 

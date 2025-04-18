@@ -1,13 +1,14 @@
 ---
-title: "자바스크립트에서 비동기 처리 다루기"
-description: "비동기 처리"
+title: 자바스크립트에서 비동기 처리 다루기
+description: 비동기 처리
 tags:
   - JavaScript
   - ES6
   - async await
   - 비동기 처리
 date: 2020-05-23
-category: "💻 Dev"
+thumbnailUrl: 2020/async-process/thumbnail.png
+category: 💻 Dev
 ---
 
 ## 비동기 처리

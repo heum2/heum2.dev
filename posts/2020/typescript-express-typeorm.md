@@ -7,12 +7,14 @@ tags:
   - express
   - typeORM
 date: 2020-09-11
+thumbnailUrl: 2020/typescript-express-typeorm/thumbnail.png
 category: 💻 Dev
 ---
-이번 프로젝트에서 Backend를 담당하게 되었다. 토이 프로젝트로 `Express`, `Sequelize` 를 사용했기에 금방 할 줄 알았으나, 너무 오래 걸렸다.. 
+
+이번 프로젝트에서 Backend를 담당하게 되었다. 토이 프로젝트로 `Express`, `Sequelize` 를 사용했기에 금방 할 줄 알았으나, 너무 오래 걸렸다..
 나와 같은 사람들이 늪에 빠지지 않길 바라며 글을 작성한다.
 
-# 폴더 구조
+## 폴더 구조
 
 ```
 .
@@ -45,9 +47,9 @@ category: 💻 Dev
 
 ---
 
-# TypeScript
+## TypeScript
 
-## 설치
+### 설치
 
 우선 `npm`으로 `typescript`를 설치한다.
 
@@ -55,7 +57,7 @@ category: 💻 Dev
 npm i -D typescript
 ```
 
-## 설정
+### 설정
 
 설치가 완료가 되었다면 `tsconfig.json`를 추가한 후 자신의 상황에 맞게 설정하면 된다.
 
@@ -78,7 +80,7 @@ npm i -D typescript
 }
 ```
 
-`tsconfig.json` 에서 아래 두 줄은 `typeORM` 공식 문서에서 추가하라는 옵션이다. 
+`tsconfig.json` 에서 아래 두 줄은 `typeORM` 공식 문서에서 추가하라는 옵션이다.
 
 간략하게 설명하면 `typeORM`에서 `reflect-metadata` 라이브러리를 사용하는데, 해당 라이브러리의 지원을 돕기 위해 아래의 두 줄이 필요하다. 자세한 내용은 [[참고](https://www.typescriptlang.org/docs/handbook/decorators.html)] 하기 바란다.
 
@@ -86,15 +88,15 @@ npm i -D typescript
 // tsconfig.json
 {
   "emitDecoratorMetadata": true,
-  "experimentalDecorators": true,
+  "experimentalDecorators": true
 }
 ```
 
 ---
 
-# TypeORM
+## TypeORM
 
-## 설치
+### 설치
 
 `typeorm, express, mysql, reflect-metadata`를 설치 한다.
 
@@ -108,7 +110,7 @@ npm i typeorm express mysql reflect-metadata
 npm i -D @types/express @types/node
 ```
 
-## 설정
+### 설정
 
 `typeORM`을 설치 했으니 `ormconfig.json` 파일을 추가해 아래와 같이 입력한다.
 
@@ -153,27 +155,27 @@ npm i -D @types/express @types/node
 ];
 ```
 
-배열로 입력을 했는데, 이는 이름에서 유추할 수 있듯 테스트 할 때 사용하는 DB와 배포하고 나서 사용하는 DB를 나눈 것이다. 각자 환경에 맞게 설정 하면 된다. `.env`를 사용하는 유저는 `ormconfig.js` 를 사용하면 된다. 
+배열로 입력을 했는데, 이는 이름에서 유추할 수 있듯 테스트 할 때 사용하는 DB와 배포하고 나서 사용하는 DB를 나눈 것이다. 각자 환경에 맞게 설정 하면 된다. `.env`를 사용하는 유저는 `ormconfig.js` 를 사용하면 된다.
 
 테스트 할 때 사용하는 DB에서는 `synchronize: true, logging: false, dropSchema: true` 옵션이 보인다. 공식 문서에서는 다음과 같이 설명한다.
 
-### **synchronize : boolean**
+**synchronize : boolean**
 
 - 참 / 거짓에 따라 해당 스키마의 테이블 / 컬럼들을 추가 및 변경 해준다.
 - 테스트 환경에서만 사용하고, 배포할 경우엔 사용 금지.
 
-### **logging : boolean**
+**logging : boolean**
 
 - 참 / 거짓에 따라 query log 들을 보여 준다.
 
-### **dropSchema : boolean**
+**dropSchema : boolean**
 
 - 참 / 거짓에 따라 서버가 재 실행 될 때마다 해당 스키마의 테이블들을 전부 삭제한다.
 - 테스트 환경에서만 사용하고, 배포할 경우엔 사용 금지. ( 데이터가 전부 날아감 )
 
 그 다음 줄은 `entities, subscriber, migrations`이 있다. 해당 코드가 들어있는 폴더 경로를 입력해 주면 어느정도 설정은 끝이다. 옵션에 대해 자세히 알고 싶다면 [[여기](https://typeorm.io/#/connection-options)]를 클릭해 확인해 보기 바란다.
 
-## Entity
+### Entity
 
 `/entity` 폴더 안에 `User.ts` 파일을 추가한다.
 
@@ -193,17 +195,16 @@ export class User {
 
   @Column()
   age!: number;
-
 }
 ```
 
-`Entity`는 데이터베이스 테이블을 만드는데 사용한다. 
+`Entity`는 데이터베이스 테이블을 만드는데 사용한다.
 
-`Column`은 테이블 속성을 설정 할 수 있다. 
+`Column`은 테이블 속성을 설정 할 수 있다.
 
 `PrimaryGeneratedColumn`은 auto increment가 설정 된 기본 키이다. `PrimaryGeneratedColumn('uuid')`로 고유의 문자열을 가질 수도 있다.
 
-## 관계 테이블
+### 관계 테이블
 
 `/entity` 폴더 안에 `Photo.ts` 파일을 추가한다.
 
@@ -235,11 +236,10 @@ export class Photo {
 
   @ManyToOne(type => User, user => user.photos)
   user!: User;
-
 }
 ```
 
-유저와 사진의 관계는 한 명의 유저가 여러 장의 사진을 찍을 수 있고, 한 장의 사진은 한 명의 유저만 가지고 있기에 1:N 관계이다. 
+유저와 사진의 관계는 한 명의 유저가 여러 장의 사진을 찍을 수 있고, 한 장의 사진은 한 명의 유저만 가지고 있기에 1:N 관계이다.
 
 그렇기에 주가 되는 테이블은 User이며 Photo 테이블에서 userId 값을 가져야 한다.
 
@@ -301,25 +301,25 @@ await connection.manager.save(user2);
 
 더 많은 관계 테이블의 연결 방법은 [[여기](https://typeorm.io/#/relations)]를 클릭해 확인하기 바란다.
 
-## DB 연결
+### DB 연결
 
 `/utils` 폴더 안에 `createTypeormConn.ts` 을 추가한다.
 
 ```tsx
 // ... utils/createTypeormConn.ts
-import { getConnectionOptions, createConnection } from 'typeorm';
+import { getConnectionOptions, createConnection } from "typeorm";
 
 export const createTypeormConn = async () => {
   const connectionOptions = await getConnectionOptions(process.env.NODE_ENV);
-  return await createConnection({...connectionOptions, name: "default"});
+  return await createConnection({ ...connectionOptions, name: "default" });
 };
 ```
 
-### getConnectionOptions
+#### getConnectionOptions
 
 `ormconfig.json`에서 설정한 옵션들을 가지고 있다. 매개 변수로 **ConnectionName**을 받기에 `process.env.NODE_ENV`를 이용해 환경에 맞게 DB를 사용할 수 있다.
 
-### createConnection
+#### createConnection
 
 DB와 연결을 만들어주는 함수이다. 매개 변수로 **ConnectionOptions**을 받는다. 그렇기에 `connectionOptions`를 넣어 주면 된다.
 하지만 안타깝게도 에러가 난다. ~~왜??~~
@@ -327,7 +327,8 @@ DB와 연결을 만들어주는 함수이다. 매개 변수로 **ConnectionOptio
 
 모든 DB를 연결한다고 하면 `getConnectionOptions()`로 모든 옵션 설정을 가져온 뒤, `createConnection` 매개 변수로 넣어 주면 된다. 나는 단일 db 연결만 원하기에 이렇게 설정했다.
 
-# 참고
+## 참고
+
 https://velog.io/@josworks27/TypeScript-Express-typeORM으로-서버-세팅하기1
 https://youtu.be/Reb7ISQZCvA
 https://typeorm.io/

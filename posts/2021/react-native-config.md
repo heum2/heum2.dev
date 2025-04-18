@@ -1,17 +1,20 @@
 ---
-title: "[React Native] Development, Staging, Production 설정"
+title: React Native에서 Development, Staging, Production 설정
 description: Development, Staging, Production 설정
 tags:
   - react-native-config
-  - react-native
+  - react native
+  - environment variables
 date: 2021-07-19
+thumbnailUrl: 2021/react-native-config/thumbnail.png
 category: 💻 Dev
 ---
-# Intro
+
+## Intro
 
 **React Native**에는 작업하고 있는 환경에 따라서 **Development, Staging, Production**이 있다. 매번 서버 주소를 하드코딩으로 변경하기에는 부적절하기에 `react-native-config`라이브러리를 이용해 환경변수를 변경하는 방법을 찾아보았다.
 
-# Setup
+## Setup
 
 설치 방법은 아래와 같다.
 
@@ -21,7 +24,7 @@ yarn add react-native-config
 
 react native 버전이 0.60 이상이면 autolinking도 가능하다. 그렇지 않다면 해당 링크를 [참조](https://github.com/luggit/react-native-config#setup)하자.
 
-## Env file
+### Env file
 
 프로젝트 루트폴더에 `.env.development`, `.env.staging` 및 `.env.production`파일을 생성한다.
 
@@ -36,7 +39,7 @@ API_URL=https://staging.com
 API_URL=https://production.com
 ```
 
-## Setup for Android
+### Setup for Android
 
 `android/settings.gradle`맨 아래에 아래 내용을 추가한다.
 
@@ -83,8 +86,6 @@ buildTypes {
  }
 ```
 
- 
-
 `buildTypes` 바로 아래에 `flavorDimensions`를 설정해준다.
 
 ```dart
@@ -125,7 +126,7 @@ yarn android:staging
 yarn android:staging-release
 ```
 
-## Setup for iOS
+### Setup for iOS
 
 ios는 schemes를 3개 만들면 된다. 예를 들어 MyApp이 Display name이라고 하면 **MyAppDev, MyAppStaging, MyAppProd**로 만들면 된다.
 
@@ -149,7 +150,7 @@ MyAppDev를 더블클릭을 하거나 Edit버튼을 선택한다.
 
 ![](https://images.velog.io/images/heumheum2/post/61849273-0440-4c4e-b0eb-2509a2621717/image.png)
 
-Shell은 냅두고 `Provide build settings from`에 프로젝트인 MyApp를  선택을 한 뒤, 아래와 같은 코드를 넣어준다.
+Shell은 냅두고 `Provide build settings from`에 프로젝트인 MyApp를 선택을 한 뒤, 아래와 같은 코드를 넣어준다.
 
 ```bash
 # 설정한 scheme 이름에 맞게 development 부분을 변경해주세요.
@@ -157,7 +158,7 @@ cp "${PROJECT_DIR}/../.env.development" "${PROJECT_DIR}/../.env"
 echo ".env.development" > /tmp/envfile
 ```
 
-처음에는 cp 명령어를 이용해 `.env.development`를 `.env`로 복사했지만 문제가 development의 환경 값을 계속 가지고 있는  [이슈](https://github.com/luggit/react-native-config/issues/511)가 있었다.
+처음에는 cp 명령어를 이용해 `.env.development`를 `.env`로 복사했지만 문제가 development의 환경 값을 계속 가지고 있는 [이슈](https://github.com/luggit/react-native-config/issues/511)가 있었다.
 
 `/tmp/envfile`에 환경 값을 지정해버리는 방식으로 문제를 해결했다.
 
@@ -177,14 +178,15 @@ echo ".env.development" > /tmp/envfile
 yarn ios:staging
 ```
 
-# Usage
+## Usage
 
 ```tsx
-import Config from 'react-native-config'
+import Config from "react-native-config";
 
 Config.API_URL;
 ```
 
-# Link
+## Link
+
 [https://github.com/luggit/react-native-config](https://github.com/luggit/react-native-config)
 [https://www.bigbinary.com/blog/handling-environment-specific-configurations-in-react-native](https://www.bigbinary.com/blog/handling-environment-specific-configurations-in-react-native)
