@@ -87,13 +87,17 @@ const PostLayout = ({ params }: Props) => {
   }
 
   const navigatePosts = () => {
-    const posts = allPosts.sort((a, b) =>
+    const sortedPosts = allPosts.sort((a, b) =>
       compareDesc(new Date(a.date), new Date(b.date))
     );
+    const currentIndex = sortedPosts.findIndex(post => post.slug === slug);
 
     return {
-      prevPost: posts[postIndex + 1],
-      nextPost: posts[postIndex - 1],
+      prevPost:
+        currentIndex < sortedPosts.length - 1
+          ? sortedPosts[currentIndex + 1]
+          : undefined,
+      nextPost: currentIndex > 0 ? sortedPosts[currentIndex - 1] : undefined,
     };
   };
 
@@ -185,11 +189,13 @@ const PostLayout = ({ params }: Props) => {
               dangerouslySetInnerHTML={{ __html: post.body.html }}
             />
             <div className="mt-10 space-y-8 lg:mt-14">
-              <ul className="flex gap-2 mb-4">
-                {post.tags.map(item => (
-                  <Tag key={item}>{item}</Tag>
-                ))}
-              </ul>
+              <div className="overflow-x-auto common-no-scroll-bar">
+                <ul className="flex gap-2 mb-4 whitespace-nowrap">
+                  {post.tags.map(item => (
+                    <Tag key={item}>{item}</Tag>
+                  ))}
+                </ul>
+              </div>
               <hr />
             </div>
 
