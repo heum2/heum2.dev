@@ -35,15 +35,15 @@ export const Post = defineDocumentType(() => ({
     toc: {
       type: "json",
       resolve: async doc => {
-        const regulrExp = /\n(?<flag>#{2,6})\s+(?<content>.+)/g;
+        const regulrExp = /\n(#{2,6})\s+(.+)/g;
         const slgger = new GithubSlugger();
         const headings = Array.from(doc.body.raw.matchAll(regulrExp)).map(
-          ({ groups }) => {
-            const flag = groups?.flag;
-            const content = groups?.content;
+          match => {
+            const flag = match[1];
+            const content = match[2];
 
             return {
-              level: flag?.length === 2 ? "two" : "three",
+              level: flag.length === 2 ? "two" : "three",
               text: content,
               slug: content ? slgger.slug(content) : undefined,
             };
