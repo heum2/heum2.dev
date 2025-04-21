@@ -9,7 +9,8 @@ import Image from "next/image";
 import Giscus from "src/components/comments";
 import { Tag } from "src/components/tags";
 import { MobileTocBanner, PostFooter, TocBanner } from "src/components/layout";
-import { MDXContent } from "src/components/content";
+import MDXContent from "src/components/mdx";
+
 import { config } from "config";
 
 export const generateStaticParams = async () =>
