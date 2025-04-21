@@ -36,23 +36,23 @@ export function PostFooter({ prevPost, nextPost }: Props): JSX.Element {
         </div>
       </div>
 
-      <div className="text-secondary  mt-2 flex items-center text-xs font-semibold sm:mx-0 sm:text-base">
+      <div className="text-secondary mt-4 flex flex-col sm:flex-row items-center gap-4 text-sm font-semibold sm:text-base">
         {prevPost && (
           <Link
             href={`/posts${prevPost.slug}`}
-            className="group gap-1 md:gap-3 px-4 py-2 md:pl-0 flex items-center rounded-lg transition-all hover:bg-gray-300"
+            className="group w-full sm:w-1/2 gap-2 px-4 py-3 flex items-center rounded-lg transition-all hover:bg-gray-300 dark:hover:bg-gray-600"
           >
-            <MdKeyboardArrowLeft />
-            <span className="break-keep">{prevPost.title}</span>
+            <MdKeyboardArrowLeft className="text-xl flex-shrink-0" />
+            <span className="break-keep line-clamp-1">{prevPost.title}</span>
           </Link>
         )}
         {nextPost && (
           <Link
             href={`/posts${nextPost.slug}`}
-            className="group ml-auto gap-1 px-4 py-2 md:pr-0 text-right flex items-center rounded-lg transition-all hover:bg-gray-300"
+            className="group w-full sm:w-1/2 gap-2 px-4 py-3 flex items-center justify-end rounded-lg transition-all hover:bg-gray-300 dark:hover:bg-gray-600"
           >
-            <span className="break-keep">{nextPost.title}</span>
-            <MdKeyboardArrowRight />
+            <span className="break-keep line-clamp-1">{nextPost.title}</span>
+            <MdKeyboardArrowRight className="text-xl flex-shrink-0" />
           </Link>
         )}
       </div>
