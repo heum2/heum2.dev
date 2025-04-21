@@ -12,7 +12,8 @@ import GithubSlugger from "github-slugger";
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
-  filePathPattern: `**/*.md`,
+  filePathPattern: `**/*.{md,mdx}`,
+  contentType: "mdx",
   fields: {
     title: { type: "string", required: true },
     description: { type: "string", required: true },
@@ -58,7 +59,7 @@ export const Post = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: "posts",
   documentTypes: [Post],
-  markdown: {
+  mdx: {
     remarkPlugins: [remarkGfm, remarkBreaks],
     rehypePlugins: [
       rehypeSlug,

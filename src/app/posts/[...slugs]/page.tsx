@@ -9,6 +9,7 @@ import Image from "next/image";
 import Giscus from "src/components/comments";
 import { Tag } from "src/components/tags";
 import { MobileTocBanner, PostFooter, TocBanner } from "src/components/layout";
+import { MDXContent } from "src/components/content";
 import { config } from "config";
 
 export const generateStaticParams = async () =>
@@ -101,7 +102,6 @@ const PostLayout = ({ params }: Props) => {
     };
   };
 
-  // 구조화된 데이터 생성 (Schema.org)
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -184,10 +184,9 @@ const PostLayout = ({ params }: Props) => {
               <MobileTocBanner value={post.toc} />
             </div>
 
-            <div
-              className="[&>*]:mb-3 [&>*:last-child]:mb-0 break-keep break-words prose dark:prose-invert max-w-6xl mx-auto"
-              dangerouslySetInnerHTML={{ __html: post.body.html }}
-            />
+            <div className="[&>*]:mb-3 [&>*:last-child]:mb-0 break-keep break-words prose dark:prose-invert max-w-6xl mx-auto">
+              <MDXContent code={post.body.code} />
+            </div>
             <div className="mt-10 space-y-8 lg:mt-14">
               <div className="overflow-x-auto common-no-scroll-bar">
                 <ul className="flex gap-2 mb-4 whitespace-nowrap">
