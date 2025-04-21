@@ -24,12 +24,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // 메인 페이지 추가
-  return [
-    {
-      url: siteUrl,
-      lastModified: new Date(),
-    },
-    ...routes,
-    ...posts,
-  ];
+  return [...routes, ...posts];
 }
