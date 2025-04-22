@@ -39,3 +39,8 @@ next-env.d.ts
 
 # obsidian
 .obsidian
+
+# rss
+public/feed.json
+public/rss.xml
+public/rss-atom.xml
