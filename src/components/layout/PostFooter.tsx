@@ -5,6 +5,7 @@ import { MdKeyboardArrowLeft } from "@react-icons/all-files/md/MdKeyboardArrowLe
 import { MdKeyboardArrowRight } from "@react-icons/all-files/md/MdKeyboardArrowRight";
 import Image from "next/image";
 import { config } from "config";
+import { cn } from "src/utils/style";
 
 type Props = {
   prevPost: Pick<Post, "title" | "slug"> | undefined;
@@ -49,7 +50,10 @@ export function PostFooter({ prevPost, nextPost }: Props): JSX.Element {
         {nextPost && (
           <Link
             href={`/posts${nextPost.slug}`}
-            className="group w-full sm:w-1/2 gap-2 px-4 py-3 flex items-center justify-end rounded-lg transition-all hover:bg-gray-300 dark:hover:bg-gray-600"
+            className={cn(
+              "group w-full sm:w-1/2 gap-2 px-4 py-3 flex items-center justify-end rounded-lg transition-all hover:bg-gray-300 dark:hover:bg-gray-600",
+              !prevPost && "ml-auto"
+            )}
           >
             <span className="break-keep line-clamp-1">{nextPost.title}</span>
             <MdKeyboardArrowRight className="text-xl flex-shrink-0" />
