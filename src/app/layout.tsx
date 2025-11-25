@@ -63,6 +63,9 @@ export const metadata: Metadata = {
     other: {
       "naver-site-verification":
         config.naverSearchConsole.config.siteVerification,
+      ...(config.googleAdsense.enable && {
+        "google-adsense-account": config.googleAdsense.config.client,
+      }),
     },
   },
   icons: {

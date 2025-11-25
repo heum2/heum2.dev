@@ -44,7 +44,7 @@ export const config = {
     },
   },
   googleAdsense: {
-    enable: false,
+    enable: process.env.NODE_ENV === "production",
     config: {
       client: process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT,
     },
