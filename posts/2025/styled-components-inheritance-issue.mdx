@@ -1,0 +1,369 @@
+---
+title: Styled Components 스타일 우선순위 문제 해결기
+description: Styled Components에서 컴포넌트를 상속할 때 발생하는 이슈를 정리
+tags:
+  - styled-components
+  - Next.js
+  - CSS
+  - TypeScript
+  - CSS Specificity
+  - 웹 개발
+date: 2025-11-27
+thumbnailUrl: 2025/styled-components-inheritance-issue/thumbnail.png
+category: 💻 Dev
+---
+
+## 발생한 문제점
+
+프로젝트 메인 페이지에서 특정 태그를 클릭하면 `CID=0` queryString이 추가되고, 다시 메인으로 돌아오면 **styled-components의 스타일 우선순위가 뒤바뀌는 현상이 발생했다.**
+구체적으로는 다음과 같은 문제들이 있었다.
+
+- **queryString 추가/제거 후 페이지 전환 시 스타일 우선순위가 무작위로 변경됨**
+- 상속받은 컴포넌트의 스타일이 부모 스타일에 덮어씌워짐
+- 개발자 도구에서 확인하면 자식 컴포넌트의 스타일에 취소선이 그어져 있음
+
+```html
+<!-- 실제 렌더링된 HTML -->
+<span class="Text-sc-abc123 TitleText-sc-def456">제목</span>
+```
+
+```css
+/* Styles 패널에서 확인한 CSS */
+.TitleText-sc-def456 {
+  color: red; /* 취소선 그어짐 - 적용 안됨 */
+  font-size: 20px;
+}
+
+.Text-sc-abc123 {
+  color: blue; /* 실제 적용됨 */
+  font-size: 14px;
+}
+```
+
+## 문제의 원인
+
+이 문제는 **CSS Specificity(명시도)** 와 **스타일 삽입 순서**에서 비롯된다.
+
+### styled-components의 스타일 삽입 메커니즘
+
+styled-components는 컴포넌트가 **처음 렌더링되는 순서**대로 `<head>`에 `<style>` 태그를 삽입한다.
+
+```html
+<head>
+  <style data-styled="active">
+    .Text-sc-abc123 {
+      color: blue;
+      font-size: 14px;
+    }
+    .TitleText-sc-def456 {
+      color: red;
+      font-size: 20px;
+    }
+  </style>
+</head>
+```
+
+### CSS Specificity 문제
+
+`.Text-sc-abc123`의 specificity: `0,0,1,0`
+`.TitleText-sc-def456`의 specificity: `0,0,1,0`
+
+**두 클래스의 specificity가 동일하다.** CSS는 specificity가 같을 때 나중에 정의된 스타일을 적용하는데, 문제는 렌더링 순서가 보장되지 않는다는 점이다.
+만약 `Text`가 앱의 다른 곳에서 먼저 렌더링되고, `TitleText`가 나중에 렌더링되면 정상 작동할 것처럼 보이지만, 렌더링 순서에 따라 결과가 달라지므로 예측 불가능하다.
+
+## 해결을 위한 여러 방법 시도
+
+### 1. StyledComponentsRegistry 위치 변경 (미채택)
+
+처음에는 Next.js에서 styled-components를 설정하는 `StyledComponentsRegistry` 컴포넌트의 위치가 문제라고 생각했다. `body` 태그 바로 하단에 위치시켜야 스타일이 제대로 주입된다는 정보를 보고 위치를 변경했지만, **문제는 해결되지 않았다.**
+
+### 2. !important 사용 (미채택)
+
+가장 간단하지만 권장되지 않는 방법이다.
+
+```typescript
+const TitleText = styled(Text)`
+  color: red !important;
+`;
+```
+
+`!important`는 CSS의 자연스러운 계단식 구조를 깨뜨리고, 유지보수를 어렵게 만들기 때문에 최후의 수단으로만 사용해야 한다
+
+### 3. 컴포넌트 재정의 (미채택)
+
+상속 대신 완전히 새로운 컴포넌트를 정의하는 방법이다.
+
+```typescript
+const Text = styled.span`
+  color: blue;
+  font-size: 14px;
+`;
+
+const TitleText = styled.span`
+  color: red;
+  font-size: 20px;
+`;
+```
+
+하지만 이 방법은 코드 중복이 발생하고, 공통 스타일 수정 시 여러 곳을 변경해야 하므로 **DRY(Don't Repeat Yourself)** 원칙에 어긋난다.
+
+### 4. props를 활용한 variant 패턴 (미채택)
+
+상속 대신 props로 변형을 관리하는 방법이다.
+
+```typescript
+interface TextProps {
+  $variant?: "default" | "title";
+}
+
+const Text = styled.span<TextProps>`
+  font-size: 14px;
+
+  color: ${props => (props.$variant === "title" ? "red" : "blue")};
+  ${props => props.$variant === "title" && "font-size: 20px;"}
+`;
+
+// 사용
+<Text $variant="title">제목</Text>;
+```
+
+이 방법은 깔끔하고 관리하기 좋지만, 이미 상속 패턴으로 작성된 많은 코드를 모두 리팩토링해야 한다는 단점이 있다.
+
+### 5. && 연산자 사용
+
+styled-components 공식 문서에서 권장하는 방법으로, CSS specificity를 명시적으로 높이는 방법이다.
+
+```typescript
+const Text = styled.span`
+  color: blue;
+  font-size: 14px;
+`;
+
+const TitleText = styled(Text)`
+  && {
+    color: red;
+    font-size: 20px;
+  }
+`;
+```
+
+`&&`는 CSS에서 현재 선택자를 두 번 반복하는 효과를 낸다.
+
+```css
+/* 생성되는 CSS */
+.Text-sc-abc123 {
+  color: blue;
+  font-size: 14px;
+  /* specificity: 0,0,1,0 */
+}
+
+.TitleText-sc-def456.TitleText-sc-def456 {
+  color: red;
+  font-size: 20px;
+  /* specificity: 0,0,2,0 - 더 높음! */
+}
+```
+
+#### && vs &&& 선택 기준
+
+[styled-components 공식 문서](https://styled-components.com/docs/faqs#how-can-i-override-styles-with-higher-specificity)에서는 `&&&`(앰퍼샌드 3개)를 권장한다. 두 방법의 차이는 다음과 같다.
+
+- `&&`: specificity를 2배로 (`.class.class`)
+- `&&&`: specificity를 3배로 (`.class.class.class`)
+
+**사용 기준**
+
+```typescript
+// 내가 만든 컴포넌트끼리 상속: &&
+const Text = styled.div`
+  color: black;
+`;
+
+const TitleText = styled(Text)`
+  && {
+    color: red;
+  }
+`;
+
+// 외부 라이브러리 override: &&&
+import { Button as MuiButton } from "@mui/material";
+
+const CustomButton = styled(MuiButton)`
+  &&& {
+    background: red;
+  }
+`;
+```
+
+내가 작성한 컴포넌트끼리는 `&&`로 충분하고, 외부 라이브러리나 복잡한 상속 구조에서는 `&&&`를 사용하는 것이 안전하다.
+
+이제 `TitleText의` **specificity**가 더 높아져 항상 우선 적용된다.
+하지만 공식 문서에서는 이런 방식을 임시 해결책으로 보고 있었고, 근본적인 해결책이 아니라고 판단해 더 깊이 파고들었다.
+
+### 6. attrs의 prop 전달 방식 문제 발견
+
+자세히 살펴보니, 모든 상속 컴포넌트가 아닌 `attrs`를 사용한 곳에서만 스타일 우선순위 문제가 더 심각하게 발생한다는 것을 발견했다.
+
+```tsx
+// ❌ 문제 발생 - lineClamp
+const TitleText = styled(Text).attrs({ lineClamp: 2 })``;
+// 1. attrs가 wrapper 생성
+// 2. lineClamp를 일반 prop으로 인식
+// 3. DOM 전달 시도 (경고 발생)
+// 4. 추가 처리 레이어로 인해 클래스 순서 변경
+// 5. 우선순위 꼬임
+
+// ✅ 정상 작동 - $lineClamp
+const TitleText = styled(Text).attrs({ $lineClamp: 2 })``;
+// 1. attrs가 wrapper 생성
+// 2. $lineClamp를 transient prop으로 인식
+// 3. DOM 전달하지 않음
+// 4. 내부 최적화된 경로로 처리
+// 5. 클래스 순서가 더 예측 가능하게 유지
+```
+
+styled-components v5를 사용하고 있어서 `$` 접두사 없이도 동작했지만, DOM 전달 시도로 인해 예상치 못한 동작이 발생한 것이다. v6에서는 이런 충돌을 방지하기 위해 `$` 접두사가 필수가 되었다고 한다.
+하지만 `$` 접두사를 추가해도 문제가 완전히 해결되지 않았다. 더 깊이 파고들어야 했다.
+
+### 7. React 컴포넌트 vs Styled Component 상속 문제 (최종 채택)
+
+문제의 핵심을 발견했다. **React 컴포넌트를 상속**하고 있었던 것이다.
+
+```tsx
+// ❌ 문제가 되는 방식
+import Text from "@/components/common/Text"; // forwardRef로 감싼 React 컴포넌트
+
+const Title = styled(Text)`
+  font-size: 20px;
+  font-weight: 700;
+`;
+```
+
+#### React 컴포넌트를 상속할 때 발생하는 문제
+
+**1. 불필요한 컴포넌트 중첩**
+
+![React 컴포넌트 상속 시 ForwardRef 래퍼 중복 발생](/images/2025/styled-components-inheritance-issue/problem-component-tree.png)
+
+ForwardRef 래퍼가 중복으로 생성되어 컴포넌트 트리가 불필요하게 깊어진다.
+
+**2. CSS 우선순위 문제**
+
+![같은 클래스가 여러 번 생성되어 스타일 충돌 발생](/images/2025/styled-components-inheritance-issue/problem-css-classes.png)
+
+같은 클래스(`.gEJEWM`)가 여러 번 생성되어 스타일이 예측 불가능하게 덮어씌워진다. 특히 `.attrs()` 사용 + 페이지 전환 시 문제가 심각했다.
+
+**3. 클래스 생성 방식의 차이**
+
+```
+// React 컴포넌트 상속
+styles__Text-sc-xxx gEJEWM (Text 클래스 2개)
+styles__TitleText-sc-xxx gyrjrR (TitleText 클래스 2개)
+
+// styled-component 직접 상속
+styles__Text-sc-xxx (Text 클래스 1개)
+styles__TitleText-sc-xxx bYbYR dpDBRT (TitleText 클래스 3개)
+```
+
+클래스 분배 방식이 달라지면서 스타일 주입 순서가 예측 불가능해졌다.
+
+## 최종 결론
+
+최종적으로 채택한 방법은 **styled-component를 직접 상속**하는 방식이다.
+
+```tsx
+// ✅ 올바른 방식
+import * as TextStyle from "@/components/common/Text/styles";
+
+const Title = styled(TextStyle.Text).attrs({ $lineClamp: 1 })`
+  font-size: 20px;
+  font-weight: 700;
+  white-space: pre-line;
+`;
+```
+
+### 변경 전후 비교
+
+**Before: React 컴포넌트 상속**
+
+```tsx
+import Text from "@/components/common/Text";
+import Button from "@/components/common/Button";
+
+const Title = styled(Text)``;
+const PrimaryButton = styled(Button)``;
+```
+
+**After: Styled Component 직접 상속**
+
+```tsx
+import _ as TextStyle from '@/components/common/Text/styles';
+import _ as ButtonStyle from '@/components/common/Button/styles';
+
+const Title = styled(TextStyle.Text)``;
+const PrimaryButton = styled(ButtonStyle.Button)``;
+```
+
+### 해결 결과
+
+![React 컴포넌트 상속 시 ForwardRef 래퍼 중복 해결](/images/2025/styled-components-inheritance-issue/solution-component-tree.png)
+![같은 클래스가 여러 번 생성되어 스타일 충돌 해결](/images/2025/styled-components-inheritance-issue/solution-css-classes.png)
+
+- ForwardRef 래퍼 중복 없음
+- 명확한 스타일 체인
+- 예측 가능한 CSS 우선순위
+- 페이지 전환 시에도 스타일 유지
+
+이 방법을 선택한 이유는 다음과 같다.
+
+- styled-components의 최적화: styled-component끼리 상속할 때 내부 최적화가 제대로 동작한다.
+- 명확한 스타일 체인: 불필요한 래퍼 없이 깔끔한 구조를 유지할 수 있다.
+- 예측 가능한 동작: 클래스 생성과 스타일 주입이 일관되고 예측 가능하다.
+
+핵심 원칙
+
+- ❌ `styled(ReactComponent)` - React 컴포넌트 상속 지양
+- ✅ `styled(StyledComponent)` - styled-component 직접 상속
+- ✅ `<Text>` - 일반 사용 시에는 React 컴포넌트 그대로 사용 OK
+
+### 근본적인 해결책
+
+장기적으로는 **variant 패턴**으로 리팩토링하는 것이 더 바람직하다.
+
+```typescript
+interface TextProps {
+  $variant?: "default" | "title" | "subtitle";
+}
+
+const Text = styled.span<TextProps>`
+  font-size: 14px;
+
+  ${props => {
+    switch (props.$variant) {
+      case "title":
+        return css`
+          color: red;
+          font-size: 20px;
+          font-weight: bold;
+        `;
+      case "subtitle":
+        return css`
+          color: gray;
+          font-size: 16px;
+        `;
+      default:
+        return css`
+          color: blue;
+        `;
+    }
+  }}
+`;
+```
+
+이 방법은 상속 없이 하나의 컴포넌트로 모든 변형을 관리할 수 있어, specificity 문제와 React 컴포넌트 상속 문제가 원천적으로 발생하지 않는다.
+이 경험을 통해 **라이브러리의 내부 동작 방식을 이해하는 것**이 얼마나 중요한지 깨달았다. 표면적인 해결책(`&&&`, `$` 접두사)에서 멈추지 않고 근본 원인을 찾아낸 덕분에 더 견고한 코드를 작성할 수 있게 되었다.
+
+## 참고 자료
+
+[styled-components FAQ - How can I override styles with higher specificity?](https://styled-components.com/docs/faqs#how-can-i-override-styles-with-higher-specificity)
+[MDN - CSS Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)
