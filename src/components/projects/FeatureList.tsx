@@ -12,10 +12,8 @@ export function FeatureList({ features }: FeatureListProps) {
       </h2>
       <ul className="space-y-2">
         {features.map((feature, index) => (
-          <li key={index} className="flex items-start">
-            <span className="text-green-500 dark:text-green-400 mr-2 mt-1">
-              ✓
-            </span>
+          <li key={index} className="flex items-center">
+            <span className="text-green-500 dark:text-green-400 mr-2">✓</span>
             <span className="text-gray-700 dark:text-gray-300">{feature}</span>
           </li>
         ))}
