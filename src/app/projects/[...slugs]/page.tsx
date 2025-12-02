@@ -1,11 +1,10 @@
 import { notFound } from "next/navigation";
 import { allProjects } from "contentlayer/generated";
 import { format, parseISO } from "date-fns";
-import Image from "next/image";
 import Script from "next/script";
 
 import MDXContent from "src/components/mdx";
-import { ImageGallery, FeatureList, ProjectLinks } from "src/components/projects";
+import { ImageGallery, FeatureList, ProjectLinks, ProjectThumbnail } from "src/components/projects";
 import { config } from "config";
 
 export const generateStaticParams = async () =>
@@ -109,18 +108,10 @@ export default function ProjectDetailPage({ params }: Props) {
         </header>
 
         {project.thumbnailUrl && (
-          <div className="mb-8 rounded-lg overflow-hidden">
-            <div className="relative w-full pb-[56.25%]">
-              <Image
-                src={`/images/${project.thumbnailUrl}`}
-                alt={project.title}
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-              />
-            </div>
-          </div>
+          <ProjectThumbnail
+            src={`/images/${project.thumbnailUrl}`}
+            alt={project.title}
+          />
         )}
 
         <div className="prose dark:prose-invert max-w-none [&>*]:mb-3 [&>*:last-child]:mb-0 break-keep break-words">

@@ -1,10 +1,16 @@
+"use client";
+
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 interface ImageGalleryProps {
   images?: string[];
 }
 
 export function ImageGallery({ images }: ImageGalleryProps) {
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+
   if (!images || images.length === 0) return null;
 
   return (
@@ -16,7 +22,8 @@ export function ImageGallery({ images }: ImageGalleryProps) {
         {images.map((image, index) => (
           <div
             key={index}
-            className="relative w-full pb-[62.5%] rounded-lg overflow-hidden bg-gray-200 dark:bg-zinc-600"
+            className="relative w-full pb-[62.5%] rounded-lg overflow-hidden bg-gray-200 dark:bg-zinc-600 cursor-zoom-in"
+            onClick={() => setZoomedImage(`/images/${image}`)}
           >
             <Image
               src={`/images/${image}`}
@@ -28,6 +35,34 @@ export function ImageGallery({ images }: ImageGalleryProps) {
           </div>
         ))}
       </div>
+
+      <AnimatePresence>
+        {zoomedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 cursor-zoom-out"
+            onClick={() => setZoomedImage(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+              className="relative w-[90vw] h-[90vh]"
+            >
+              <Image
+                src={zoomedImage}
+                alt="확대된 이미지"
+                fill
+                sizes="90vw"
+                className="object-contain"
+                quality={100}
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
