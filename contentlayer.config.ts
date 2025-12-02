@@ -65,7 +65,7 @@ export const Project = defineDocumentType(() => ({
     description: { type: "string", required: true },
     thumbnailUrl: { type: "string", required: true },
     startDate: { type: "date", required: true },
-    endDate: { type: "date", required: true },
+    endDate: { type: "date", required: false },
     techStack: { type: "list", of: { type: "string" }, required: true },
     projectUrl: { type: "string" },
     githubUrl: { type: "string" },
@@ -80,6 +80,9 @@ export const Project = defineDocumentType(() => ({
     duration: {
       type: "string",
       resolve: project => {
+        if (!project.endDate) {
+          return "진행 중";
+        }
         const start = new Date(project.startDate);
         const end = new Date(project.endDate);
         const months = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 30));

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Project } from "contentlayer/generated";
 import Image from "next/image";
 import Link from "next/link";
+import { format, parseISO } from "date-fns";
 
 interface ProjectCardProps extends Project {
   index?: number;
@@ -35,12 +36,15 @@ export function ProjectCard({ index = 0, ...project }: ProjectCardProps) {
         )}
 
         <div className="p-4">
-          <div className="flex items-start mb-2">
+          <div className="flex items-center mb-2">
             <h2 className="text-lg md:text-xl font-medium break-keep text-black dark:text-gray-100">
               {project.title}
             </h2>
-            <span className="bg-sky-200 ml-auto opacity-90 px-2 py-1 text-sm rounded-lg whitespace-nowrap dark:bg-sky-400">
-              {project.duration}
+            <span className="ml-auto text-xs text-gray-600 dark:text-gray-400 whitespace-nowrap">
+              {format(parseISO(project.startDate), "yyyy.MM")} -{" "}
+              {project.endDate
+                ? format(parseISO(project.endDate), "yyyy.MM")
+                : "현재"}
             </span>
           </div>
 

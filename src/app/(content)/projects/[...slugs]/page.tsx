@@ -91,9 +91,8 @@ export default function ProjectDetailPage({ params }: Props) {
           </p>
           <div className="flex items-center justify-center gap-4 text-sm text-gray-600 dark:text-gray-400">
             <span>
-              {format(parseISO(project.startDate), 'yyyy.MM')} - {format(parseISO(project.endDate), 'yyyy.MM')}
+              {format(parseISO(project.startDate), 'yyyy.MM')} - {project.endDate ? format(parseISO(project.endDate), 'yyyy.MM') : '현재'}
             </span>
-            <span>({project.duration})</span>
           </div>
           <div className="flex justify-center gap-2 mt-4 flex-wrap">
             {project.techStack.map(tech => (
