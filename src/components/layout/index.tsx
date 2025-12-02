@@ -6,3 +6,4 @@ export { HomePosts } from "./HomePosts";
 export { PostFooter } from "./PostFooter";
 export { TocBanner } from "./TocBanner";
 export { MobileTocBanner } from "./MobileTocBanner";
+export { ProjectsList } from "./ProjectsList";

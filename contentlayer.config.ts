@@ -12,7 +12,7 @@ import GithubSlugger from "github-slugger";
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
-  filePathPattern: `**/*.{md,mdx}`,
+  filePathPattern: `posts/**/*.{md,mdx}`,
   contentType: "mdx",
   fields: {
     title: { type: "string", required: true },
@@ -26,7 +26,7 @@ export const Post = defineDocumentType(() => ({
   computedFields: {
     slug: {
       type: "string",
-      resolve: post => `/${post._raw.flattenedPath}`,
+      resolve: post => `/${post._raw.flattenedPath.replace('posts/', '')}`,
     },
     readingTime: {
       type: "string",
@@ -56,9 +56,42 @@ export const Post = defineDocumentType(() => ({
   },
 }));
 
+export const Project = defineDocumentType(() => ({
+  name: "Project",
+  filePathPattern: `projects/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    title: { type: "string", required: true },
+    description: { type: "string", required: true },
+    thumbnailUrl: { type: "string", required: true },
+    startDate: { type: "date", required: true },
+    endDate: { type: "date", required: true },
+    techStack: { type: "list", of: { type: "string" }, required: true },
+    projectUrl: { type: "string" },
+    githubUrl: { type: "string" },
+    images: { type: "list", of: { type: "string" } },
+    features: { type: "list", of: { type: "string" } },
+  },
+  computedFields: {
+    slug: {
+      type: "string",
+      resolve: project => `/${project._raw.flattenedPath.replace('projects/', '')}`,
+    },
+    duration: {
+      type: "string",
+      resolve: project => {
+        const start = new Date(project.startDate);
+        const end = new Date(project.endDate);
+        const months = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 30));
+        return `${months}개월`;
+      },
+    },
+  },
+}));
+
 export default makeSource({
-  contentDirPath: "posts",
-  documentTypes: [Post],
+  contentDirPath: ".",
+  documentTypes: [Post, Project],
   mdx: {
     remarkPlugins: [remarkGfm, remarkBreaks],
     rehypePlugins: [

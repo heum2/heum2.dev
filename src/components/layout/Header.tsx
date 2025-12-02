@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useCycle } from "framer-motion";
@@ -92,18 +92,21 @@ export function Header(): JSX.Element {
                   exit="closed"
                   variants={sideVariants}
                 >
-                  <motion.li
-                    whileHover={{ scale: 1.02 }}
-                    variants={itemVariants}
-                  >
-                    <Link
-                      className="text-lg block hover:text-sky-500 dark:hover:text-cyan-300  py-2"
-                      href={config.profile.about}
-                      target="_blank"
+                  {config.menus.map((menu, index) => (
+                    <motion.li
+                      key={index}
+                      whileHover={{ scale: 1.02 }}
+                      variants={itemVariants}
                     >
-                      About
-                    </Link>
-                  </motion.li>
+                      <Link
+                        className="text-lg block hover:text-sky-500 dark:hover:text-cyan-300  py-2"
+                        href={menu.path || config.profile.about}
+                        target={menu.path ? undefined : "_blank"}
+                      >
+                        {menu.label || "About"}
+                      </Link>
+                    </motion.li>
+                  ))}
                 </motion.ul>
               </motion.aside>
             )}
@@ -111,15 +114,17 @@ export function Header(): JSX.Element {
         </div>
 
         <ul className="hidden md:flex items-center gap-4">
-          <li>
-            <Link
-              className="rounded-lg bg-transparent hover:bg-gray-300 px-3 py-1"
-              href={config.profile.about}
-              target="_blank"
-            >
-              About
-            </Link>
-          </li>
+          {config.menus.map((menu, index) => (
+            <li key={index}>
+              <Link
+                className="rounded-lg bg-transparent hover:bg-gray-300 px-3 py-1"
+                href={menu.path || config.profile.about}
+                target={menu.path ? undefined : "_blank"}
+              >
+                {menu.label || "About"}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>
