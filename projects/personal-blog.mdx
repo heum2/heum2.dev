@@ -1,0 +1,51 @@
+---
+title: "heum2.dev 포트폴리오 웹사이트"
+description: "Next.js와 TypeScript로 구축한 개인 블로그 및 포트폴리오"
+thumbnailUrl: "projects/personal-blog/thumbnail.png"
+startDate: 2024-01-15
+endDate: 2024-03-20
+techStack:
+  - Next.js
+  - TypeScript
+  - Tailwind CSS
+  - ContentLayer
+  - Framer Motion
+projectUrl: "https://heum2.dev"
+githubUrl: "https://github.com/heum2/heum2.dev"
+images:
+  - "projects/personal-blog/gallery-1.png"
+  - "projects/personal-blog/gallery-2.png"
+features:
+  - "반응형 디자인 및 다크모드 지원"
+  - "MDX 기반 블로그 포스트 관리"
+  - "SEO 최적화 및 소셜 공유 기능"
+  - "ContentLayer를 활용한 타입 안전한 데이터 관리"
+---
+
+## 프로젝트 개요
+
+Next.js 13의 App Router와 TypeScript를 활용하여 개발한 개인 블로그 및 포트폴리오 웹사이트입니다.
+ContentLayer를 통한 타입 안전한 MDX 콘텐츠 관리와 Tailwind CSS를 이용한 반응형 디자인을 구현했습니다.
+
+## 기술적 도전과 해결
+
+### 1. ContentLayer를 활용한 타입 안전한 데이터 관리
+
+MDX 파일을 TypeScript 타입으로 자동 변환하여 컴파일 타임에 오류를 잡을 수 있도록 했습니다.
+이를 통해 블로그 포스트의 frontmatter 필드를 안전하게 관리할 수 있었습니다.
+
+### 2. 다크모드 구현
+
+next-themes 라이브러리를 사용하여 다크모드를 구현했으며, 사용자의 시스템 설정을 자동으로 감지하고
+localStorage에 선택한 테마를 저장하여 새로고침 시에도 테마가 유지되도록 했습니다.
+
+### 3. SEO 최적화
+
+Next.js의 Metadata API를 활용하여 각 페이지별로 최적화된 메타데이터를 생성하고,
+sitemap과 RSS 피드를 자동 생성하여 검색 엔진 최적화를 구현했습니다.
+
+## 성과
+
+- 반응형 디자인으로 모든 디바이스에서 최적화된 사용자 경험 제공
+- ContentLayer를 통한 타입 안전한 콘텐츠 관리 시스템 구축
+- Vercel을 통한 자동 배포 및 성능 모니터링 시스템 구축
